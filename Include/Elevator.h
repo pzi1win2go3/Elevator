@@ -1,9 +1,9 @@
-# include <iostream>
-# include "Mission.h"
-using namespace std;
+#ifndef ELEVATOR_H
+#define ELEVATOR_H
 
-# ifndef ELEVATOR_H
-# define ELEVATOR_H
+#include <iostream>
+#include "Mission.h"
+using namespace std;
 
 class Elevator
 {
@@ -26,4 +26,4 @@ private:
 
 };
 
-# endif
+#endif

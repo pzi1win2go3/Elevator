@@ -1,8 +1,8 @@
-# include <iostream>
-using namespace std;
-
 #ifndef MISSION_H
 #define MISSION_H
+
+#include <iostream>
+using namespace std;
 
 class Mission
 {

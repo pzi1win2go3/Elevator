@@ -3,6 +3,12 @@
 
 class Time
 {
+public:
+	Time();
+
+	void tick();
+	void reset();
+private:
 	int time;
 };
 

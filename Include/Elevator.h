@@ -8,17 +8,20 @@ using namespace std;
 class Elevator
 {
 public:
-	Elevator ( );				// undesigned
+	Elevator (int initId);				
+	
 	void takeMission(Mission *);
-	void move();
-	void action();
 	void complete();
+	void move();
 	void open();
 	void close();
+	void action();
+
 private:
-	Mission* mission;
-	int missionNum;			// 改进算法时使用
+	Mission* cur_mission;
+	int missionNum;			
 	int position;
+	int destination;
 	int status;
 	int passenger;
 	bool isEmpty;

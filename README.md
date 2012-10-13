@@ -53,8 +53,8 @@
 			(2)
 				class Mission:
 					Variables:
-						start
-						end
+						from
+						to
 						passenger
 			(3)
 				class Elevator:
@@ -65,8 +65,8 @@
 						destination
 						status
 						id
+						destination
 					Functions:
-						action()
 						move()
 						takeMission()
 						complete()
@@ -82,5 +82,7 @@
 
 		9.全局变量：
 
-
+		10.新想法：
+			a.初始化变量命名使用前缀 init
+			b.Elevator 的函数只包括其一步一步的动作，具体动作如何组合不使用 Elevator::action(), 而是放到 controller 里面实现。
 		

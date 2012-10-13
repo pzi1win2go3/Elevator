@@ -7,11 +7,11 @@ using namespace std;
 class Mission
 {
 public:
-	Mission(int tStart, int tEnd, int tPassenger);
+	Mission(int initFrom, int initTo, int initPassenger);
 
 private:
-	int start;
-	int end;
+	int from;
+	int to;
 	int passenger;
 };
 

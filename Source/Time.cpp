@@ -12,3 +12,8 @@ void reset()
 {
 	time = 0;
 }
+
+int getTime()
+{
+	return time;
+}

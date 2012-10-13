@@ -14,7 +14,6 @@ void takeMission(Mission * mission)
 {
 	cur_mission = mission;
 	missionNum++;
-	destination = mission.to;
 }
 
 void move()

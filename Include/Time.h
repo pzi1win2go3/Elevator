@@ -8,6 +8,7 @@ public:
 
 	void tick();
 	void reset();
+	int getTime();
 private:
 	int time;
 };

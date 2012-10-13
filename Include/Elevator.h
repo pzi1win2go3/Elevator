@@ -17,6 +17,15 @@ public:
 	void close();
 	void action();
 
+	int getMissionNum();
+	int getPosition();
+	int getDestination();
+	int getStatus();
+	int getPassenger();
+	bool isEmpty();
+
+	void setStatus();
+
 private:
 	Mission* cur_mission;
 	int missionNum;			
@@ -24,7 +33,7 @@ private:
 	int destination;
 	int status;
 	int passenger;
-	bool isEmpty;
+	bool empty;
 	int id;
 
 };

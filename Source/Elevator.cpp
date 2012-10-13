@@ -29,12 +29,41 @@ void move()
 	// take 1 unit time
 }
 
-void open()
+void pick()
 {
+	passenger += cur_mission.passenger
+	missionNum++;
 	// take 1 unit time
 }
 
-void cloes()
+void drop()
 {
+	passenger -= cur_mission.passenger
+	missionNum--;
 	// take 1 unit time
+}
+
+int getMissionNum()
+{
+	return missionNum;
+}
+int getPosition()
+{
+	return position;
+}
+int getDestination()
+{
+	return destination;
+}
+int getStatus()
+{
+	return status;
+}
+int getPassengers()
+{
+	return passenger;
+}
+bool isEmpty()
+{
+	return empty;
 }

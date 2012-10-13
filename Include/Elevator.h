@@ -26,7 +26,7 @@ public:
 	Mission* getMission();
 
 	void setStatus();
-	void setMissionNull;
+	void setMissionNull();		// set cur_mission to NULL
 
 private:
 	Mission* cur_mission;

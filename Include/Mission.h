@@ -11,6 +11,7 @@ public:
 	int getFrom();
 	int getTo();
 	int getPassenger();
+	void setPassenger(int);
 
 private:
 	int from;

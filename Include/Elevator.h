@@ -23,8 +23,10 @@ public:
 	int getStatus();
 	int getPassenger();
 	bool isEmpty();
+	Mission* getMission();
 
 	void setStatus();
+	void setMissionNull;
 
 private:
 	Mission* cur_mission;

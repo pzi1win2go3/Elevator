@@ -13,9 +13,8 @@ public:
 	void takeMission(Mission *);
 	void complete();
 	void move();
-	void open();
-	void close();
-	void action();
+	void pick();
+	void drop();
 
 	int getMissionNum();
 	int getPosition();

@@ -24,7 +24,8 @@ public:
 	bool isEmpty();
 	Mission* getMission();
 
-	void setStatus();
+	void setId(int);
+	void setStatus(int);
 	void setMissionNull();		// set cur_mission to NULL
 
 private:

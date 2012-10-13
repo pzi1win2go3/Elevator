@@ -24,11 +24,11 @@ int main(int argc, char *argv[])
 	cin >> floorNum;
 	cout << "请输入泊松分布参数:" << endl;
 	cin >> lambda;
-
+	srand(time(0));
 	while(true)
 	{
-		newMission = new Mission(P_rand(lambda), P_rand(lambda), P_rand(lambda));
-		MissionQ.push(newMission);
+		newMission = new Mission(rand()%floorNum+1, rand()%floorNum+1, P_rand(lambda));
+		controller.storeMission (newMission);
 		// 1.generate missions
 		controller.control()
 		// 2.control

@@ -8,6 +8,10 @@ ElevatorController::ElevatorController (int inti_compacity,  int init_storey, in
 	storey = init_storey;
 	elevatorNum = init_elevatorNum;
 	elevator =  new Elevator[elevatorNum+2];
+	for (int i = 1; i <= elevatorNum; i++)
+	{
+		elevator[i].setId(i);
+	}
 	waiting = new int[storey+2];
 	memset(wating, 0, (storey+2)*sizeof(int));
 }
@@ -102,6 +106,7 @@ void ElevatorController::storeMission(Mission * ptrMission)
 void ElevatorController::show()
 {
 	int i,j,k;
+	system("cls");
 	printf("Storey                        Waiting");
 	for (i = 1; i  <= elevatorNum; i++)
 	{
@@ -110,7 +115,7 @@ void ElevatorController::show()
 	printf ("\n");
 
 
-	
+
 	for (i = storey; i >= 1; i--)
 	{
 		printf("%d                           %d", i, waiting[i]);

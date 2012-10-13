@@ -1,4 +1,6 @@
-Elevator(int initId)
+
+
+Elevator::Elevator()
 {
 	cur_mission = NULL;
 	missionNum = 0;
@@ -7,17 +9,23 @@ Elevator(int initId)
 	status = 0;
 	passenger = 0;
 	isEmpty = true;
-	id = initId;
 }
 
-void takeMission(Mission * mission)
+void Elevator::setId(int init_id)
+{
+	id = init_id;
+	return;
+}
+
+void Elevator::takeMission(Mission * mission)
 {
 	cur_mission = mission;
 	missionNum++;
 }
 
-void move()
+void Elevator::move(int order)
 {
+	destination = order;
 	if(position > destination)
 	{
 		position--;
@@ -29,41 +37,59 @@ void move()
 	// take 1 unit time
 }
 
-void pick()
+void Elevator::pick()
 {
 	passenger += cur_mission.passenger
 	missionNum++;
 	// take 1 unit time
 }
 
-void drop()
+void Elevator::drop()
 {
 	passenger -= cur_mission.passenger
 	missionNum--;
 	// take 1 unit time
 }
 
-int getMissionNum()
+int Elevator::getMissionNum()
 {
 	return missionNum;
 }
-int getPosition()
+int Elevator::getPosition()
 {
 	return position;
 }
-int getDestination()
+int Elevator::getDestination()
 {
 	return destination;
 }
-int getStatus()
+int Elevator::getStatus()
 {
 	return status;
 }
-int getPassengers()
+int Elevator::getPassengers()
 {
 	return passenger;
 }
-bool isEmpty()
+bool Elevator::isEmpty()
 {
 	return empty;
 }
+
+Mission* Elevator::getMission()
+{
+	return cur_mission;
+}
+
+void Elevator::setStatus(int newStatus)
+{
+	status = newStatus;
+	return;
+}
+
+void Elevator::setMissionNull()
+{
+	cur_mission = NULL;
+	return;
+}
+

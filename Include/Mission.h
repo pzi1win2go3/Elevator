@@ -8,6 +8,9 @@ class Mission
 {
 public:
 	Mission(int initFrom, int initTo, int initPassenger);
+	int getFrom();
+	int getTo();
+	int getPassenger();
 
 private:
 	int from;

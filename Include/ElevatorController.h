@@ -9,6 +9,7 @@ public:
 	ElevatorController(int inti_compacity,  int init_storey, int init_elevatorNum);
 	void control();
 	void show();
+	void storeMission(Mission *);
 private:
 	queue<Mission *> MissionQ;
 	Elevator * elevator;

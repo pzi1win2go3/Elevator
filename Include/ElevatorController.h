@@ -10,6 +10,7 @@ public:
 	void control();
 	void storeMission(Mission * mission);
 	void show();
+	void storeMission(Mission *);
 private:
 	queue<Mission *> MissionQ;
 	Elevator * elevator;

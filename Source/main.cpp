@@ -1,4 +1,5 @@
-#include <iostream>
+#include <cstdlib>
+#include <cstdio>
 #include "../Include/Poisson.h"
 #include "../Include/ElevatorController.h"
 
@@ -16,15 +17,20 @@ const DURATION = 5;										// duration of generating missions
 
 int main(int argc, char *argv[])
 {
-	cout << "请输入最大乘客数:" << endl;
-	cin >> maxPassengerNum;
-	cout << "请输入电梯数:" << endl;
-	cin >> elevatorNum;
-	cout << "请输入楼层数:" << endl;
-	cin >> floorNum;
-	cout << "请输入泊松分布参数:" << endl;
-	cin >> lambda;
+	printf("请输入最大乘客数:\n");
+	scanf("%d\n", &maxPassengerNum);
+
+	printf("请输入电梯数:\n");
+	scanf("%d\n", &elevatorNum);
+	
+	printf("请输入楼层数:\n");
+	scanf("%d\n", &floorNum);
+	
+	printf("请输入泊松分布参数:\n");
+	scanf("%e\n", &lambda);
+	
 	srand(time(0));
+	
 	while(true)
 	{
 		newMission = new Mission(rand()%floorNum+1, rand()%floorNum+1, P_rand(lambda));

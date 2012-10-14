@@ -2,13 +2,13 @@
 #include <memory.h>
 #include <cstdio>
 
-ElevatorController::ElevatorController (int inti_compacity,  int init_storey, int init_elevatorNum)
+ElevatorController::ElevatorController(int inti_capacity,  int init_storey, int init_elevatorNum)
 {
-	compaciy = inti_compacity;
+	capacity = inti_capacity;
 	storey = init_storey;
 	elevatorNum = init_elevatorNum;
 	elevator =  new Elevator[elevatorNum+2];
-	for (int i = 1; i <= elevatorNum; i++)
+	for(int i = 1; i <= elevatorNum; i++)
 	{
 		elevator[i].setId(i);
 	}
@@ -16,31 +16,31 @@ ElevatorController::ElevatorController (int inti_compacity,  int init_storey, in
 	memset(wating, 0, (storey+2)*sizeof(int));
 }
 
-void ElevatorController::control ( )
+void ElevatorController::control()
 {
 	int i,j,k,t;	 // FOR DEBUG
 	Mission * ptrMission;
 
-	for (t = 0; t < 5; t++)
+	for(t = 0; t < 5; t++)
 	{
 		show();
 
 		//   assign mission
-		if ( ! MissionQ.empty() )
+		if( ! MissionQ.empty() )
 		{
-			for (i = 1; i <= elevatorNum; i++)
+			for(i = 1; i <= elevatorNum; i++)
 			{
-				if  (elevator[i].getStatus() == 0)
+				if(elevator[i].getStatus() == 0)
 				{
 					ptrMission = MissionQ.front();
 					MissionQ.pop();
-					if (ptrMission->getPassenger() <= compaciy)
+					if(ptrMission->getPassenger() <= compaciy)
 					{
 						elevator[i].takeMission(ptrMission);
 					}
 					else
 					{
-						Mission * temp = new Mission (ptrMission->getFrom(), ptrMission->getTo, ptrMission->getPassenger-compacity);
+						Mission * temp = new Mission (ptrMission->getFrom(), ptrMission->getTo, ptrMission->getPassenger-capacity);
 						elevator[i].takeMission(ptrMission);
 						MissionQ.push(temp);
 					}
@@ -51,15 +51,15 @@ void ElevatorController::control ( )
 
 
 		// elevator run
-		for  (i = 1; i <= elevatorNum; i++)
+		for(i = 1; i <= elevatorNum; i++)
 		{
-			if (elevator[i].getStatus() == 0)
+			if(elevator[i].getStatus() == 0)
 				continue;
 
-			else if (elevator[i].getStatus() == 1)
+			else if(elevator[i].getStatus() == 1)
 			{
 				ptrMission = elevator[i].getMission();
-				if (elevator[i].getPosition() == ptrMission->getTo())
+				if(elevator[i].getPosition() == ptrMission->getTo())
 				{
 					//reach
 					elevator[i].open();
@@ -74,10 +74,10 @@ void ElevatorController::control ( )
 					elevator[i].move(ptrMission->getTo());
 				}
 			}
-			else if (elevator[i].getStatus() == -1)
+			else if(elevator[i].getStatus() == -1)
 			{
 				ptrMission = elevator[i].getMission();
-				if (elevator[i].getPosition() == ptrMission->getFrom())
+				if(elevator[i].getPosition() == ptrMission->getFrom())
 				{
 					//reach
 					elevator[i].open();
@@ -108,20 +108,20 @@ void ElevatorController::show()
 	int i,j,k;
 	system("cls");
 	printf("Storey                        Waiting");
-	for (i = 1; i  <= elevatorNum; i++)
+	for(i = 1; i <= elevatorNum; i++)
 	{
 		printf("  Elevator %d  ", i);
 	}
-	printf ("\n");
+	printf("\n");
 
 
 
-	for (i = storey; i >= 1; i--)
+	for(i = storey; i >= 1; i--)
 	{
 		printf("%d                           %d", i, waiting[i]);
-		for (j = 1; j <= elevatorNum; j++)
+		for(j = 1; j <= elevatorNum; j++)
 		{
-			if (elevator[j].getPosition() == i)
+			if(elevator[j].getPosition() == i)
 				printf("      [%d]      ", elevator[j].getPassenger());
 			else
 				printf("                       ");

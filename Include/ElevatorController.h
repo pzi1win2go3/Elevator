@@ -6,7 +6,7 @@
 class ElevatorController
 {
 public:
-	ElevatorController(int inti_compacity,  int init_storey, int init_elevatorNum);
+	ElevatorController(int inti_compacity, int init_storey, int init_elevatorNum);
 	void control();
 	void show();
 private:

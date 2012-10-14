@@ -4,7 +4,7 @@ Elevator::Elevator()
 {
 	cur_mission = NULL;
 	missionNum = 0;
-	position = 0;
+	position = 1;
 	destination = 0;
 	status = 0;
 	passenger = 0;

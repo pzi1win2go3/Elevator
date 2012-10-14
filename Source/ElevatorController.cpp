@@ -24,12 +24,15 @@ void ElevatorController::control()
 	for(t = 0; t < 5; t++)
 	{
 		show();
+		sleep(1);
 		
 		//   assign mission
 		if( ! MissionQ.empty() )
 		{
 			for(i = 1; i <= elevatorNum; i++)
 			{
+				if (MissionQ.empty())
+					break;
 				if(elevator[i].getStatus() == 0)
 				{
 					ptrMission = MissionQ.front();
@@ -37,11 +40,15 @@ void ElevatorController::control()
 					if(ptrMission->getPassenger() <= capacity)
 					{
 						elevator[i].takeMission(ptrMission);
+						elevator[i].setStatus(-1);
+						
 					}
 					else
 					{
 						Mission * temp = new Mission (ptrMission->getFrom(), ptrMission->getTo(), ptrMission->getPassenger() - capacity);
-						elevator[i].takeMission(ptrMission);
+						Mission * toTake = new Mission (ptrMission->getFrom(), ptrMission->getTo(), capacity);
+						elevator[i].takeMission(toTake);
+						elevator[i].setStatus(-1);
 						MissionQ.push(temp);
 					}
 				}
@@ -103,8 +110,8 @@ void ElevatorController::storeMission(Mission * ptrMission)
 void ElevatorController::show()
 {
 	int i,j,k;
-	system("cls");
-	printf("Storey                        Waiting");
+	system("clear");
+	printf("Storey                    Waiting");
 	for(i = 1; i <= elevatorNum; i++)
 	{
 		printf("  Elevator %d  ", i);
@@ -115,13 +122,17 @@ void ElevatorController::show()
 	
 	for(i = storey; i >= 1; i--)
 	{
-		printf("%d                           %d", i, waiting[i]);
+		if (i < 10)
+			printf("%d                           %d", i, waiting[i]);
+		else
+			printf("%d                          %d", i, waiting[i]);
+
 		for(j = 1; j <= elevatorNum; j++)
 		{
 			if(elevator[j].getPosition() == i)
 				printf("      [%d]      ", elevator[j].getPassenger());
 			else
-				printf("                       ");
+				printf("                ");
 		}
 		printf("\n");
 	}

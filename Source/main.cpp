@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 {
 	printf("请输入最大乘客数:\n");
 	scanf("%d\n", &capacity);
-
+	
 	printf("请输入电梯数:\n");
 	scanf("%d\n", &elevatorNum);
 	
@@ -42,6 +42,6 @@ int main(int argc, char *argv[])
 		controller.control();
 		// 2.control
 	}
-
+	
 	return 0;
 }

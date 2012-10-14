@@ -1,6 +1,6 @@
 #include "../Include/Elevator.h"
 
-Elevator::Elevator()
+Elevator::Elevator(int init_id)
 {
 	cur_mission = NULL;
 	missionNum = 0;
@@ -8,7 +8,8 @@ Elevator::Elevator()
 	destination = 0;
 	status = 0;
 	passenger = 0;
-	isEmpty = true;
+	empty = true;;
+	id = init_id;
 }
 
 void Elevator::setId(int init_id)
@@ -39,14 +40,14 @@ void Elevator::move(int order)
 
 void Elevator::pick()
 {
-	passenger += cur_mission.passenger
+	passenger += cur_mission->getPassenger();
 	missionNum++;
 	// take 1 unit time
 }
 
 void Elevator::drop()
 {
-	passenger -= cur_mission.passenger
+	passenger -= cur_mission->getPassenger();
 	missionNum--;
 	// take 1 unit time
 }
@@ -67,7 +68,7 @@ int Elevator::getStatus()
 {
 	return status;
 }
-int Elevator::getPassengers()
+int Elevator::getPassenger()
 {
 	return passenger;
 }

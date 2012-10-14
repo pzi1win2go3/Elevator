@@ -1,4 +1,4 @@
-#include "Poisson.h"
+#include "../Include/Poisson.h"
 
 double U_Rand(double a, double b)		//    ¾ùÔÈ·Ö²¼   
 {

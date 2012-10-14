@@ -1,19 +1,21 @@
-Time()
+#include "../Include/Time.h"
+
+Time::Time()
 {
 	time = 0;
 }
 
-void tick()
+void Time::tick()
 {
 	time++;
 }
 
-void reset()
+void Time::reset()
 {
 	time = 0;
 }
 
-int getTime()
+int Time::getTime()
 {
 	return time;
 }

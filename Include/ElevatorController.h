@@ -6,15 +6,16 @@
 class ElevatorController
 {
 public:
-	ElevatorController(int inti_compacity,  int init_storey, int init_elevatorNum);
+	ElevatorController(int init_capacity, int init_storey, int init_elevatorNum);
 	void control();
+	void storeMission(Mission * mission);
 	void show();
 	void storeMission(Mission *);
 private:
 	queue<Mission *> MissionQ;
 	Elevator * elevator;
 	int * wating;
-	int compacity;
+	int capacity;
 	int storey;
 	int elevatorNum;
 

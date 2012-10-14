@@ -1,19 +1,21 @@
-Mission(int initFrom, int initTo, int initPassenger)
+#include "../Include/Mission.h"
+
+Mission::Mission(int initFrom, int initTo, int initPassenger)
 {
 	from = initFrom;
 	to = initTo;
 	passenger = initPassenger;
 }
 
-int getFrom()
+int Mission::getFrom()
 {
 	return from;
 }
-int getTo()
+int Mission::getTo()
 {
 	return to;
 }
-int getPassenger()
+int Mission::getPassenger()
 {
 	return passenger;
 }

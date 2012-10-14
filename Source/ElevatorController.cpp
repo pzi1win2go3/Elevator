@@ -2,18 +2,18 @@
 #include <memory.h>
 #include <cstdio>
 
-ElevatorController::ElevatorController(int inti_capacity,  int init_storey, int init_elevatorNum)
+ElevatorController::ElevatorController(int init_capacity,  int init_storey, int init_elevatorNum)
 {
 	capacity = inti_capacity;
 	storey = init_storey;
 	elevatorNum = init_elevatorNum;
-	elevator =  new Elevator[elevatorNum+2];
+	elevator =  new Elevator[elevatorNum + 2];
 	for(int i = 1; i <= elevatorNum; i++)
 	{
 		elevator[i].setId(i);
 	}
-	waiting = new int[storey+2];
-	memset(wating, 0, (storey+2)*sizeof(int));
+	waiting = new int[storey + 2];
+	memset(wating, 0, (storey + 2) * sizeof(int));
 }
 
 void ElevatorController::control()
@@ -34,13 +34,13 @@ void ElevatorController::control()
 				{
 					ptrMission = MissionQ.front();
 					MissionQ.pop();
-					if(ptrMission->getPassenger() <= compaciy)
+					if(ptrMission->getPassenger() <= capacity)
 					{
 						elevator[i].takeMission(ptrMission);
 					}
 					else
 					{
-						Mission * temp = new Mission (ptrMission->getFrom(), ptrMission->getTo, ptrMission->getPassenger-capacity);
+						Mission * temp = new Mission (ptrMission->getFrom(), ptrMission->getTo, ptrMission->getPassenger - capacity);
 						elevator[i].takeMission(ptrMission);
 						MissionQ.push(temp);
 					}
@@ -53,10 +53,10 @@ void ElevatorController::control()
 		// elevator run
 		for(i = 1; i <= elevatorNum; i++)
 		{
-			if(elevator[i].getStatus() == 0)
+			if(elevator[i].getStatus() == 0)												// when elevator has no mission taken and to be taken
 				continue;
 
-			else if(elevator[i].getStatus() == 1)
+			else if(elevator[i].getStatus() == 1)										// when elevator has mission taken
 			{
 				ptrMission = elevator[i].getMission();
 				if(elevator[i].getPosition() == ptrMission->getTo())
@@ -74,7 +74,8 @@ void ElevatorController::control()
 					elevator[i].move(ptrMission->getTo());
 				}
 			}
-			else if(elevator[i].getStatus() == -1)
+
+			else if(elevator[i].getStatus() == -1)									// when elevator has mission to be taken
 			{
 				ptrMission = elevator[i].getMission();
 				if(elevator[i].getPosition() == ptrMission->getFrom())

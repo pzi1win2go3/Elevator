@@ -16,23 +16,27 @@ double lambda;
 int DURATION = 5;	// duration of generating missions
 
 Time globalClock;
-ElevatorController controller(capacity, elevatorNum, storey);
+
 
 int main(int argc, char *argv[])
 {
 	printf("请输入最大乘客数:\n");
-	scanf("%d\n", &capacity);
+	scanf("%d", &capacity);
 	
 	printf("请输入电梯数:\n");
-	scanf("%d\n", &elevatorNum);
+	scanf("%d", &elevatorNum);
 	
 	printf("请输入楼层数:\n");
-	scanf("%d\n", &storey);
+	scanf("%d", &storey);
 	
 	printf("请输入泊松分布参数:\n");
-	scanf("%lf\n", &lambda);
+	scanf("%lf", &lambda);
 	
 	srand(time(0));
+	
+	ElevatorController controller(capacity,storey,elevatorNum);
+	
+	
 	
 	while(true)
 	{

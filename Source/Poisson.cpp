@@ -3,7 +3,7 @@
 double U_Rand(double a, double b)		//    ¾ùÔÈ·Ö²¼   
 {
 	const int MAX_VAL = 32767;
-	double x = rand();   
+	double x = rand()%MAX_VAL;
 	return a + (b - a) * (x + 1) / (MAX_VAL + 1);   
 }   
     

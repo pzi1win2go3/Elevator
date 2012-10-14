@@ -13,7 +13,7 @@ public:
 private:
 	queue<Mission *> MissionQ;
 	Elevator * elevator;
-	int * wating;
+	int * waiting;
 	int capacity;
 	int storey;
 	int elevatorNum;

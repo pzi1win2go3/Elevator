@@ -12,7 +12,7 @@ public:
 	
 	void takeMission(Mission *);
 	void complete();
-	void move();
+	void move(int order);
 	void pick();
 	void drop();
 

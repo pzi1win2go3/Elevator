@@ -1,6 +1,6 @@
 #include "../Include/Elevator.h"
 
-Elevator::Elevator(int init_id)
+Elevator::Elevator()
 {
 	cur_mission = NULL;
 	missionNum = 0;
@@ -9,7 +9,6 @@ Elevator::Elevator(int init_id)
 	status = 0;
 	passenger = 0;
 	empty = true;;
-	id = init_id;
 }
 
 void Elevator::setId(int init_id)

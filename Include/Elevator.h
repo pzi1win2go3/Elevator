@@ -8,7 +8,7 @@ using namespace std;
 class Elevator
 {
 public:
-	Elevator(int initId);				
+	Elevator();				
 	
 	void takeMission(Mission *);
 	void complete();

@@ -7,7 +7,7 @@ using namespace std;
 class Mission
 {
 public:
-	Mission(int initFrom, int initTo, int initPassenger, int initLifeTime);	// construction	
+	Mission(int initFrom, int initTo, int initPassenger, int initBornTime);	// construction	
 	
 	//////////////////////////////////////////////////////////////////
 	/////////////////////////// API here /////////////////////////////	

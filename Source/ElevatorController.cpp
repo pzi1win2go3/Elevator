@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <cstdlib>
 
+#define DEBUG
 
 ElevatorController::ElevatorController(int init_capacity, int init_storey, int init_elevatorNum)
 {
@@ -131,6 +132,10 @@ void ElevatorController::show()
 			printf("%d                           %d", i, waiting[i]);
 		else
 			printf("%d                          %d", i, waiting[i]);
+# ifdef DEBUG
+        if (waiting[i] < 0)
+            cin.get();
+# endif
 
 		for(j = 1; j <= elevatorNum; j++)
 		{
@@ -138,6 +143,7 @@ void ElevatorController::show()
 				printf("      [%d]      ", elevator[j].getPassenger());
 			else
 				printf("               ");
+
 
 		}
 		printf("\n");
@@ -163,9 +169,8 @@ void SSTFController::control()
 		show();
 		sleep(1);
 
+
 		//   assign mission
-
-
 		for(i = 1; i <= elevatorNum; i++)
 		{
 			if  (elevator[i].getStatus() != 0)
@@ -189,7 +194,7 @@ void SSTFController::control()
 				}
 			}
 
-			ptrMission = MissionList[subscript];
+			ptrMission = *SSTiter;
 			MissionList.erase(SSTiter);
 			if(ptrMission->getPassenger() <= capacity)
 			{

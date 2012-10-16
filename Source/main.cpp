@@ -35,7 +35,8 @@ int main(int argc, char *argv[])
 	srand(time(0));
 
 
-	// here decide which algorithm to use
+	// generate controller
+	// HERE decide which algorithm to use
 	SSTFController controller(capacity, storey, elevatorNum); 
 
 
@@ -43,7 +44,7 @@ int main(int argc, char *argv[])
 	{
 
 		// 1. generate missions here
-		int missionNum = 3;
+		int missionNum = 1;	// missions generated per unit time
 		while(missionNum--)
 		{
 			Mission *newMission = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), controller.globalClock.getTime());

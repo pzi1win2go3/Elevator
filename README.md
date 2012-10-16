@@ -30,55 +30,67 @@
 			README.md 		说明文档
 
 		3.考虑整体使用 MVC 的概念构建项目：
-			M: class Time, class Mission, class Elevator
-			V: void Print()
-			C: class ElevatorController
+			M: 	class Time 
+					class Mission 
+					class Elevator
+			
+			V: 	void print()
+					void info()     // in ElevatorController
 
-		4.图形输出采用库 easyX
+			C: 	class ElevatorController
+
+		4.图形输出采用 ASCII
 
 		5.算法：
-			(1)先到先服务
+			(1)先到先服务		 	FCFS
+			(2)最短寻找时间 	SSTF
 
 		6.main函数内容：
 			(1)输入
-			(2)以 信息更新周期 为周期的循环：
+			(2)以 信息更新周期(DURATION) 为周期的循环：
 				a.产生任务
 				b.电梯调度
 
 		7.数据结构：
+			1. 具体算法中对 Mission 和 Elevator 都使用指针
+			2. Elevator 通用，故放在 C 的基类中
+			3. Mission 因算法不同而变化，故放在 C 的子类中
 
 		8.类的设计：
 			(1)
 				class Time:
 			(2)
 				class Mission:
-					Variables:
-						from
-						to
-						passenger
 			(3)
 				class Elevator:
-					Variables:
-						Mission *
-						//passenger
-						position
-						destination
-						status
-						id
-						destination
-					Functions:
-						move()
-						takeMission()
-						complete()
-						open()
-						close()
-			(4)
+				
+			(4)-----------IMPORTANT------------
 				class ElevatorController:
-					Variables:
-						queue<Mission> //maybe other DS
-						Elevator *
-					Function:
-						control //put algorithm here
+					variables: 
+						1. capacity, storey, elevatorNum, DURATION
+						2. elevator, waiting
+						3. maxWaitingTime, aveWaitingTime, aveWaitingTimeCount, aveFlow, totalFlow
+						4. globalClock
+					functions:
+						1. show(), info()
+						2. updateMaxWaitingTime(), updateAveWaitingTime(), updateAveFlow()
+
+				(4).a
+					class FCFSController < ElevatorController
+						variables:
+							1. queue<Mission *> MissionQ
+						functions:
+							1. control()
+							2. storeMission()
+
+				(4).b
+					class SSTFController < ElevatorController
+						variables:
+							1. vector<Mission *> MissionList
+						functions:
+							1. control()
+							2. storeMission()
+				----------------------------------
 
 		9.全局变量：
 

@@ -39,14 +39,13 @@ void ElevatorController::show()
 	}
 	printf("\n");
 
-
-
 	for(i = storey; i >= 1; i--)
 	{
 		if (i < 10)
 			printf("%d                           %d", i, waiting[i]);
 		else
 			printf("%d                          %d", i, waiting[i]);
+
 # ifdef DEBUG
         if (waiting[i] < 0)
             cin.get();
@@ -58,8 +57,6 @@ void ElevatorController::show()
 				printf("      [%d]      ", elevator[j].getPassenger());
 			else
 				printf("               ");
-
-
 		}
 		printf("\n");
 	}
@@ -67,9 +64,11 @@ void ElevatorController::show()
 
 void ElevatorController::info()
 {
-	printf("	Max waiting time:				%d\n", maxWaitingTime);
-	printf("	Ave waiting time:  			%lf\n", aveWaitingTime);
-	printf("	Ave flow number:				%lf\n", aveFlow);
+	printf("--Information----------------------------------\n");
+	printf("	Max waiting time:				%6d\n", maxWaitingTime);
+	printf("	Ave waiting time:  			%6.2f\n", aveWaitingTime);
+	printf("	Ave flow number:				%6.2f\n", aveFlow);
+	printf("-----------------------------------------------\n");
 }
 
 void ElevatorController::updateMaxWaitingTime(Mission * ptrMission)

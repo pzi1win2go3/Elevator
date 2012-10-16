@@ -1,10 +1,11 @@
 #include "../Include/Mission.h"
 
-Mission::Mission(int initFrom, int initTo, int initPassenger)
+Mission::Mission(int initFrom, int initTo, int initPassenger, int initBornTime)
 {
 	from = initFrom;
 	to = initTo;
 	passenger = initPassenger;
+	bornTime = initBornTime;
 }
 
 int Mission::getFrom()
@@ -18,4 +19,12 @@ int Mission::getTo()
 int Mission::getPassenger()
 {
 	return passenger;
+}
+int Mission::getLifeTime(int completedTime)
+{
+	return completedTime - bornTime;
+} 
+int Mission::getBornTime()
+{
+	return bornTime;
 }

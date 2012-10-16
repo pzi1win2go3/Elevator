@@ -2,7 +2,7 @@
 
 Time::Time()
 {
-	time = 0;
+	time = 1;
 }
 
 void Time::tick()

@@ -13,10 +13,6 @@ int capacity;
 int elevatorNum;
 int storey;
 double lambda;
-int DURATION = 5;	// duration of generating missions
-
-Time globalClock;
-
 
 int main(int argc, char *argv[])
 {
@@ -34,14 +30,16 @@ int main(int argc, char *argv[])
 
 	srand(time(0));
 
-	SSTFController controller(capacity,storey,elevatorNum);
-
-
+	SSTFController controller(capacity, storey, elevatorNum);
 
 	while(true)
 	{
-		Mission *newMission = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda));
-		controller.storeMission(newMission);
+		Mission *newMission1 = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), controller.globalClock.getTime());
+		Mission *newMission2 = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), controller.globalClock.getTime());
+		Mission *newMission3 = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), controller.globalClock.getTime());
+		controller.storeMission(newMission1);
+		controller.storeMission(newMission2);
+		controller.storeMission(newMission3);
 		// 1.generate missions
 		controller.control();
 		// 2.control

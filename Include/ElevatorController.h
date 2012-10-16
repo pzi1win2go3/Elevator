@@ -17,8 +17,8 @@ public:
 	/////////////////////
 	/////////////////////
 
-	void updateMaxWaitingTime(Mission *); // called when a mission taken
-	void updateAveWaitingTime(Mission *);	// called when a mission taken
+	void updateMaxWaitingTime(Mission *); // called when a mission picked
+	void updateAveWaitingTime(Mission *);	// called when a mission picked
 	void updateAveFlow();	 								// called when every 1 unit time
 
 	virtual void control() = 0;

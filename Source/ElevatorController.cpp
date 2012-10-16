@@ -119,22 +119,13 @@ void FCFSController::control()
 					MissionQ.pop();
 					if(ptrMission->getPassenger() <= capacity)
 					{
-						// update info
-						updateMaxWaitingTime(ptrMission);
-						updateAveWaitingTime(ptrMission);
-
 						elevator[i].takeMission(ptrMission);
 						elevator[i].setStatus(-1);
-
 					}
 					else
 					{
 						Mission * temp = new Mission (ptrMission->getFrom(), ptrMission->getTo(), ptrMission->getPassenger() - capacity, ptrMission->getBornTime());
 						Mission * toTake = new Mission (ptrMission->getFrom(), ptrMission->getTo(), capacity, ptrMission->getBornTime());
-						
-						// update info
-						updateAveWaitingTime(toTake);
-						updateMaxWaitingTime(toTake);
 
 						elevator[i].takeMission(toTake);
 						elevator[i].setStatus(-1);
@@ -185,6 +176,11 @@ void FCFSController::control()
 				//reach
 				if(elevator[i].getPosition() == ptrMission->getFrom())
 				{
+
+					// update info
+					updateMaxWaitingTime(ptrMission);
+					updateAveWaitingTime(ptrMission);
+
 					elevator[i].setStatus(1);
 					waiting[ptrMission->getFrom()] -= ptrMission->getPassenger();
 					elevator[i].pick();
@@ -256,23 +252,14 @@ void SSTFController::control()
 			MissionList.erase(SSTiter);
 			if(ptrMission->getPassenger() <= capacity)
 			{
-				// update info
-				updateMaxWaitingTime(ptrMission);
-				updateAveWaitingTime(ptrMission);
-
 				elevator[i].takeMission(ptrMission );
 				elevator[i].setStatus(-1);
-
 			}
 			else
 			{
 				Mission * temp = new Mission (ptrMission->getFrom(), ptrMission->getTo(), ptrMission->getPassenger() - capacity, ptrMission->getBornTime());
 				Mission * toTake = new Mission (ptrMission->getFrom(), ptrMission->getTo(), capacity, ptrMission->getBornTime());
 				
-				// update info
-				updateMaxWaitingTime(toTake);
-				updateAveWaitingTime(toTake);
-
 				elevator[i].takeMission(toTake);
 				elevator[i].setStatus(-1);
 				MissionList.push_back(temp);
@@ -323,6 +310,11 @@ void SSTFController::control()
 				//reach
 				if(elevator[i].getPosition() == ptrMission->getFrom())
 				{
+
+					// update info
+					updateMaxWaitingTime(ptrMission);
+					updateAveWaitingTime(ptrMission);
+
 					elevator[i].setStatus(1);
 					waiting[ptrMission->getFrom()] -= ptrMission->getPassenger();
 					elevator[i].pick();

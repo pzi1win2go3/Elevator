@@ -22,9 +22,9 @@ int Mission::getPassenger()
 {
 	return passenger;
 }
-int Mission::getLifeTime(int completedTime)
+int Mission::getLifeTime(int assignedTime)
 {
-	return completedTime - bornTime;
+	return assigendTime - bornTime;
 } 
 int Mission::getBornTime()
 {

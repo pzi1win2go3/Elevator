@@ -37,7 +37,8 @@ int main(int argc, char *argv[])
 
 	// generate controller
 	// HERE decide which algorithm to use
-	SSTFController controller(capacity, storey, elevatorNum); 
+	// 1.FCFS 2.SSTF
+	FCFSController controller(capacity, storey, elevatorNum); 
 
 
 	while(true)

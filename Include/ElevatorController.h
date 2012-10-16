@@ -41,7 +41,7 @@ protected:
 	int aveWaitingTimeCount;
 	double aveWaitingTime;
 	double aveFlow;
-	int totalFlow;
+	double totalFlow;
 	/////////////////////////
 	/////////////////////////
 };

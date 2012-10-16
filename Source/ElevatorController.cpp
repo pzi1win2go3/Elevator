@@ -17,7 +17,7 @@ ElevatorController::ElevatorController(int init_capacity, int init_storey, int i
 	aveFlow = 0;
 	totalFlow = 0;
 
-	DURATION = 5;
+	DURATION = 10;
 	
 	elevator =  new Elevator[elevatorNum + 2];
 	for(int i = 1; i <= elevatorNum; i++)
@@ -79,7 +79,7 @@ void ElevatorController::updateMaxWaitingTime(Mission * ptrMission)
 
 void ElevatorController::updateAveWaitingTime(Mission * ptrMission)
 {
-	aveWaitingTime = (ptrMission->getLifeTime(globalClock.getTime()) + aveWaitingTime * aveWaitingTimeCount++) / aveWaitingTimeCount;
+	aveWaitingTime = (ptrMission->getLifeTime(globalClock.getTime()) + aveWaitingTime * (double)aveWaitingTimeCount++) / (double)aveWaitingTimeCount;
 }
 
 void ElevatorController::updateAveFlow()
@@ -88,7 +88,7 @@ void ElevatorController::updateAveFlow()
 	{
 		totalFlow += elevator[i].getPassenger();
 	}
-	aveFlow = totalFlow / globalClock.getTime();
+	aveFlow = totalFlow / (double)globalClock.getTime();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////

@@ -8,7 +8,7 @@ using namespace std;
 class Elevator
 {
 public:
-	Elevator();				
+	Elevator();								// construction		
 	
 	void takeMission(Mission *);
 	void complete();
@@ -16,6 +16,12 @@ public:
 	void pick();
 	void drop();
 
+	void setId(int);
+	void setStatus(int);
+	void setMissionNull();		// set cur_mission to NULL
+
+	//////////////////////////////////////////////////////////////////
+	/////////////////////////// API here /////////////////////////////
 	int getMissionNum();
 	int getPosition();
 	int getDestination();
@@ -23,10 +29,8 @@ public:
 	int getPassenger();
 	bool isEmpty();
 	Mission* getMission();
-
-	void setId(int);
-	void setStatus(int);
-	void setMissionNull();		// set cur_mission to NULL
+	//////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////
 
 private:
 	Mission* cur_mission;

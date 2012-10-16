@@ -7,14 +7,17 @@ using namespace std;
 class Mission
 {
 public:
-	Mission(int initFrom, int initTo, int initPassenger, int initLifeTime);
+	Mission(int initFrom, int initTo, int initPassenger, int initLifeTime);	// construction	
 	
+	//////////////////////////////////////////////////////////////////
+	/////////////////////////// API here /////////////////////////////	
 	int getFrom();
 	int getTo();
 	int getPassenger();
 	int getLifeTime(int completedTime);
 	int getBornTime();
-	void setPassenger(int);
+	//////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////
 
 private:
 	int from;

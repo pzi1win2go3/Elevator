@@ -9,10 +9,14 @@
 
 using namespace std;
 
+//////////////////////
+// global variables //
 int capacity;
 int elevatorNum;
 int storey;
 double lambda;
+//////////////////////
+//////////////////////
 
 int main(int argc, char *argv[])
 {
@@ -30,19 +34,25 @@ int main(int argc, char *argv[])
 
 	srand(time(0));
 
-	SSTFController controller(capacity, storey, elevatorNum);
+
+	// here decide which algorithm to use
+	SSTFController controller(capacity, storey, elevatorNum); 
+
 
 	while(true)
 	{
-		Mission *newMission1 = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), controller.globalClock.getTime());
-		Mission *newMission2 = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), controller.globalClock.getTime());
-		Mission *newMission3 = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), controller.globalClock.getTime());
-		controller.storeMission(newMission1);
-		controller.storeMission(newMission2);
-		controller.storeMission(newMission3);
-		// 1.generate missions
+
+		// 1. generate missions here
+		int missionNum = 3;
+		while(missionNum--)
+		{
+			Mission *newMission = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), controller.globalClock.getTime());
+			controller.storeMission(newMission);
+		}
+
+		// 2. control
 		controller.control();
-		// 2.control
+
 	}
 
 	return 0;

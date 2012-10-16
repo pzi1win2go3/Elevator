@@ -8,36 +8,42 @@
 class ElevatorController
 {
 public:
-	ElevatorController(int init_capacity, int init_storey, int init_elevatorNum);
-	void show();
-	void info();
+	ElevatorController(int init_capacity, int init_storey, int init_elevatorNum);	// construction	
+	
+	/////////////////////
+	// print functions //
+	void show();  
+	void info();	
+	/////////////////////
+	/////////////////////
 
 	void updateMaxWaitingTime(Mission *); // called when a mission taken
-	void updateAveWaitingTime(Mission *);
-
-	void updateAveFlow(); // called when every 1 unit time
+	void updateAveWaitingTime(Mission *);	// called when a mission taken
+	void updateAveFlow();	 								// called when every 1 unit time
 
 	virtual void control() = 0;
 	virtual void storeMission(Mission *) = 0;
 
-		Time globalClock;
-		
+	Time globalClock;				// clock
+
 protected:
-	Elevator * elevator;
-	int * waiting;
-	Mission * missionInStorey;
-	int capacity;
+	int capacity;					
 	int storey;
 	int elevatorNum;
+	int DURATION;	  				// duration of generating missions
 
-	int DURATION;	// duration of generating missions
+	Elevator * elevator;		// (pointer) elevators
+	int * waiting;					// (pointer) numbers of waiting people of different storeys
 
-	// for info collection
+	/////////////////////////
+	// for info collection //
 	int maxWaitingTime;
 	int aveWaitingTimeCount;
 	double aveWaitingTime;
 	double aveFlow;
 	int totalFlow;
+	/////////////////////////
+	/////////////////////////
 };
 
 class FCFSController:public ElevatorController // First Come First Served
@@ -60,6 +66,6 @@ public:
 	void storeMission(Mission *);
 
 private:
-	vector<Mission *>  MissionList;
+	vector<Mission *> MissionList;
 
 };

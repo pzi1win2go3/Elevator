@@ -51,6 +51,21 @@ void Elevator::drop()
 	// take 1 unit time
 }
 
+
+void Elevator::setStatus(int newStatus)
+{
+	status = newStatus;
+	return;
+}
+
+void Elevator::setMissionNull()
+{
+	cur_mission = NULL;
+	return;
+}
+
+//////////////////////////////////////////////////////////////////
+/////////////////////////// API here /////////////////////////////
 int Elevator::getMissionNum()
 {
 	return missionNum;
@@ -75,21 +90,11 @@ bool Elevator::isEmpty()
 {
 	return empty;
 }
-
 Mission* Elevator::getMission()
 {
 	return cur_mission;
 }
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
-void Elevator::setStatus(int newStatus)
-{
-	status = newStatus;
-	return;
-}
-
-void Elevator::setMissionNull()
-{
-	cur_mission = NULL;
-	return;
-}
 

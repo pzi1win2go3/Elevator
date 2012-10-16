@@ -68,7 +68,7 @@ void ElevatorController::show()
 void ElevatorController::info()
 {
 	printf("	Max waiting time:				%d\n", maxWaitingTime);
-	printf("	Ave waiting time:  				%lf\n", aveWaitingTime);
+	printf("	Ave waiting time:  			%lf\n", aveWaitingTime);
 	printf("	Ave flow number:				%lf\n", aveFlow);
 }
 
@@ -93,7 +93,7 @@ void ElevatorController::updateAveFlow()
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////// First Come First Serve ///////////////////////////////
 
 void FCFSController::control()
 {
@@ -150,18 +150,23 @@ void FCFSController::control()
 		// elevator run
 		for(i = 1; i <= elevatorNum; i++)
 		{
-			if(elevator[i].getStatus() == 0)												// when elevator has no mission taken and to be taken
+			// when elevator has no mission taken and to be taken
+			if(elevator[i].getStatus() == 0)												
 				continue;
 
-			else if(elevator[i].getStatus() == 1)										// when elevator has mission taken
+			// when elevator has mission taken
+			else if(elevator[i].getStatus() == 1)										
 			{
 				ptrMission = elevator[i].getMission();
+
+				//reach
 				if(elevator[i].getPosition() == ptrMission->getTo())
 				{
-					//reach
 					elevator[i].setStatus(0);
 					elevator[i].drop();
-					if (elevator[i].getMission() != NULL)	// mission completed
+
+					// mission completed
+					if(elevator[i].getMission() != NULL)	
 					{
 					    delete elevator[i].getMission();
 					    elevator[i].setMissionNull();
@@ -173,12 +178,14 @@ void FCFSController::control()
 				}
 			}
 
-			else if(elevator[i].getStatus() == -1)									// when elevator has mission to be taken
+			// when elevator has mission to be taken
+			else if(elevator[i].getStatus() == -1)									
 			{
 				ptrMission = elevator[i].getMission();
+
+				//reach
 				if(elevator[i].getPosition() == ptrMission->getFrom())
 				{
-					//reach
 					elevator[i].setStatus(1);
 					waiting[ptrMission->getFrom()] -= ptrMission->getPassenger();
 					elevator[i].pick();
@@ -202,7 +209,7 @@ void FCFSController::storeMission(Mission * ptrMission)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
+////////////////////////// Shortest Seek Time First /////////////////////////////////
 
 void SSTFController::control()
 {
@@ -220,14 +227,16 @@ void SSTFController::control()
 		sleep(1);
 
 
-		//   assign mission
+		// assign mission
 		for(i = 1; i <= elevatorNum; i++)
 		{
-			if  (elevator[i].getStatus() != 0)
+			if(elevator[i].getStatus() != 0)
 				continue;
-			if (MissionList.empty())
+			if(MissionList.empty())
 				break;
-			else 	// find the shortest seek	 time
+
+			// find the shortest seek	time
+			else 	
 			{
 				SSTime = abs(MissionList[0]->getFrom() - elevator[i].getPosition());
 				iter = MissionList.begin();
@@ -278,18 +287,23 @@ void SSTFController::control()
 		// elevator run
 		for(i = 1; i <= elevatorNum; i++)
 		{
-			if(elevator[i].getStatus() == 0)												// when elevator has no mission taken and to be taken
+			// when elevator has no mission taken and to be taken
+			if(elevator[i].getStatus() == 0)												
 				continue;
 
-			else if(elevator[i].getStatus() == 1)										// when elevator has mission taken
+			// when elevator has mission taken
+			else if(elevator[i].getStatus() == 1)										
 			{
 				ptrMission = elevator[i].getMission();
+
+				//reach
 				if(elevator[i].getPosition() == ptrMission->getTo())
 				{
-					//reach
 					elevator[i].setStatus(0);
 					elevator[i].drop();
-					if (elevator[i].getMission() != NULL)	 // mission completed
+
+					// mission completed
+					if (elevator[i].getMission() != NULL)	 
 					{
 					    delete elevator[i].getMission();
 					    elevator[i].setMissionNull();
@@ -302,12 +316,14 @@ void SSTFController::control()
 				}
 			}
 
-			else if(elevator[i].getStatus() == -1)									// when elevator has mission to be taken
+			// when elevator has mission to be taken
+			else if(elevator[i].getStatus() == -1)									
 			{
 				ptrMission = elevator[i].getMission();
+
+				//reach
 				if(elevator[i].getPosition() == ptrMission->getFrom())
 				{
-					//reach
 					elevator[i].setStatus(1);
 					waiting[ptrMission->getFrom()] -= ptrMission->getPassenger();
 					elevator[i].pick();

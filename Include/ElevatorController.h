@@ -2,16 +2,16 @@
 #include "Mission.h"
 #include <queue>
 #include <iostream>
+#include <cmath>
 
 class ElevatorController
 {
 public:
 	ElevatorController(int init_capacity, int init_storey, int init_elevatorNum);
-	void control();
 	void show();
-	void storeMission(Mission *);
+	virtual void control() = 0;
+	virtual void storeMission(Mission *) = 0;
 private:
-	queue<Mission *> MissionQ;
 	Elevator * elevator;
 	int * waiting;
 	int capacity;
@@ -20,3 +20,26 @@ private:
 
 
 };
+
+class FCFSController : public ElevatorController // First Come First Served
+{
+public:
+	 FCFSController (int init_capacity, int init_storey, int init_elevatorNum)
+	 :ElevatorController(int init_capacity, int init_storey, int init_elevatorNum){};
+	void control();
+	void storeMission(Mission *);
+private:
+	queue <Mission *> MissionQ;
+};
+
+class SSTFController: public ElevatorController // Shortest Seek Time First
+{
+public:
+	SSTFController  (int init_capacity, int init_storey, int init_elevatorNum)
+	 :ElevatorController(int init_capacity, int init_storey, int init_elevatorNum){};
+	 void control();
+	void storeMission(Mission *);
+private:
+	vector<Mission *>  MissionList;
+
+}

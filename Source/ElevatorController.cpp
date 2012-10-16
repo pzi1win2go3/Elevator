@@ -16,7 +16,7 @@ ElevatorController::ElevatorController(int init_capacity, int init_storey, int i
 	memset(waiting, 0, (storey + 2) * sizeof(int));
 }
 
-void ElevatorController::control()
+void FCFSController ::control()
 {
 	int i,j,k,t;	 // FOR DEBUG
 	Mission * ptrMission;
@@ -101,7 +101,7 @@ void ElevatorController::control()
 	}
 }
 
-void ElevatorController::storeMission(Mission * ptrMission)
+void FCFSController ::storeMission(Mission * ptrMission)
 {
 	waiting[ptrMission->getFrom()] += ptrMission->getPassenger();
 	MissionQ.push(ptrMission);
@@ -137,4 +137,103 @@ void ElevatorController::show()
 		printf("\n");
 	}
 }
+
+void SSTFController::storeMission (Mission* ptrMission)
+{
+	waiting[ptrMission->getFrom()] += ptrMission->getPassenger();
+	MissionList.push_back(ptrMission);
+}
+
+void FCFSController ::control()
+{
+	int i,j,k,t;	 // FOR DEBUG
+	Mission * ptrMission;
+	vector<Mission*> ::iterator iter ;
+	int SSTime;
+	
+	for(t = 0; t < 5; t++)
+	{
+		show();
+		sleep(1);
+		
+		//   assign mission
+
+
+			for(i = 1; i <= elevatorNum; i++)
+			{
+				if (MissionList.empty())
+					break;
+				else 	// find the shortest seek	 time
+				{
+					SSTime = MissionList[0].getFrom()
+					for (iter)
+				}
+				if(elevator[i].getStatus() == 0)
+				{
+					ptrMission = MissionQ.front();
+					MissionQ.pop();
+					if(ptrMission->getPassenger() <= capacity)
+					{
+						elevator[i].takeMission(ptrMission);
+						elevator[i].setStatus(-1);
+						
+					}
+					else
+					{
+						Mission * temp = new Mission (ptrMission->getFrom(), ptrMission->getTo(), ptrMission->getPassenger() - capacity);
+						Mission * toTake = new Mission (ptrMission->getFrom(), ptrMission->getTo(), capacity);
+						elevator[i].takeMission(toTake);
+						elevator[i].setStatus(-1);
+						MissionQ.push(temp);
+					}
+				}
+				
+			}
+
+		
+		
+		// elevator run
+		for(i = 1; i <= elevatorNum; i++)
+		{
+			if(elevator[i].getStatus() == 0)												// when elevator has no mission taken and to be taken
+				continue;
+			
+			else if(elevator[i].getStatus() == 1)										// when elevator has mission taken
+			{
+				ptrMission = elevator[i].getMission();
+				if(elevator[i].getPosition() == ptrMission->getTo())
+				{
+					//reach
+					elevator[i].setStatus(0);
+					elevator[i].drop();
+					delete elevator[i].getMission();
+					elevator[i].setMissionNull();
+				}
+				else
+				{
+					elevator[i].move(ptrMission->getTo());
+				}
+			}
+			
+			else if(elevator[i].getStatus() == -1)									// when elevator has mission to be taken
+			{
+				ptrMission = elevator[i].getMission();
+				if(elevator[i].getPosition() == ptrMission->getFrom())
+				{
+					//reach
+					elevator[i].setStatus(1);
+					waiting[ptrMission->getFrom()] -= ptrMission->getPassenger();
+					elevator[i].pick();
+				}
+				else
+				{
+					elevator[i].move(ptrMission->getFrom());
+				}
+				
+			}
+			
+		}
+	}
+}
+
 

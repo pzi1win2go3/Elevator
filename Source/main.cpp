@@ -22,22 +22,22 @@ int main(int argc, char *argv[])
 {
 	printf("请输入最大乘客数:\n");
 	scanf("%d", &capacity);
-	
+
 	printf("请输入电梯数:\n");
 	scanf("%d", &elevatorNum);
-	
+
 	printf("请输入楼层数:\n");
 	scanf("%d", &storey);
-	
+
 	printf("请输入泊松分布参数:\n");
 	scanf("%lf", &lambda);
-	
+
 	srand(time(0));
-	
-	ElevatorController controller(capacity,storey,elevatorNum);
-	
-	
-	
+
+	SSTFController controller(capacity,storey,elevatorNum);
+
+
+
 	while(true)
 	{
 		Mission *newMission = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda));
@@ -46,6 +46,6 @@ int main(int argc, char *argv[])
 		controller.control();
 		// 2.control
 	}
-	
+
 	return 0;
 }

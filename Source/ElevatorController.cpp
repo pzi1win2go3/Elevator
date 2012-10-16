@@ -1,6 +1,8 @@
-#include "ElevatorController.h"
+#include "../Include/ElevatorController.h"
 #include <memory.h>
 #include <cstdio>
+#include <cstdlib>
+
 
 ElevatorController::ElevatorController(int init_capacity, int init_storey, int init_elevatorNum)
 {
@@ -20,12 +22,12 @@ void FCFSController ::control()
 {
 	int i,j,k,t;	 // FOR DEBUG
 	Mission * ptrMission;
-	
+
 	for(t = 0; t < 5; t++)
 	{
 		show();
 		sleep(1);
-		
+
 		//   assign mission
 		if( ! MissionQ.empty() )
 		{
@@ -41,7 +43,7 @@ void FCFSController ::control()
 					{
 						elevator[i].takeMission(ptrMission);
 						elevator[i].setStatus(-1);
-						
+
 					}
 					else
 					{
@@ -52,17 +54,17 @@ void FCFSController ::control()
 						MissionQ.push(temp);
 					}
 				}
-				
+
 			}
 		}
-		
-		
+
+
 		// elevator run
 		for(i = 1; i <= elevatorNum; i++)
 		{
 			if(elevator[i].getStatus() == 0)												// when elevator has no mission taken and to be taken
 				continue;
-			
+
 			else if(elevator[i].getStatus() == 1)										// when elevator has mission taken
 			{
 				ptrMission = elevator[i].getMission();
@@ -71,15 +73,18 @@ void FCFSController ::control()
 					//reach
 					elevator[i].setStatus(0);
 					elevator[i].drop();
-					delete elevator[i].getMission();
-					elevator[i].setMissionNull();
+					if (elevator[i].getMission() != NULL)
+					{
+					    delete elevator[i].getMission();
+					    elevator[i].setMissionNull();
+					}
 				}
 				else
 				{
 					elevator[i].move(ptrMission->getTo());
 				}
 			}
-			
+
 			else if(elevator[i].getStatus() == -1)									// when elevator has mission to be taken
 			{
 				ptrMission = elevator[i].getMission();
@@ -94,9 +99,9 @@ void FCFSController ::control()
 				{
 					elevator[i].move(ptrMission->getFrom());
 				}
-				
+
 			}
-			
+
 		}
 	}
 }
@@ -117,9 +122,9 @@ void ElevatorController::show()
 		printf("  Elevator %d  ", i);
 	}
 	printf("\n");
-	
-	
-	
+
+
+
 	for(i = storey; i >= 1; i--)
 	{
 		if (i < 10)
@@ -132,7 +137,8 @@ void ElevatorController::show()
 			if(elevator[j].getPosition() == i)
 				printf("      [%d]      ", elevator[j].getPassenger());
 			else
-				printf("                ");
+				printf("               ");
+
 		}
 		printf("\n");
 	}
@@ -144,60 +150,73 @@ void SSTFController::storeMission (Mission* ptrMission)
 	MissionList.push_back(ptrMission);
 }
 
-void FCFSController ::control()
+void SSTFController::control()
 {
 	int i,j,k,t;	 // FOR DEBUG
 	Mission * ptrMission;
 	vector<Mission*> ::iterator iter ;
-	int SSTime;
-	
+	vector<Mission*>::iterator SSTiter;
+	int SSTime, subscript = 0;
+
 	for(t = 0; t < 5; t++)
 	{
 		show();
 		sleep(1);
-		
+
 		//   assign mission
 
 
-			for(i = 1; i <= elevatorNum; i++)
+		for(i = 1; i <= elevatorNum; i++)
+		{
+			if  (elevator[i].getStatus() != 0)
+				continue;
+			if (MissionList.empty())
+				break;
+			else 	// find the shortest seek	 time
 			{
-				if (MissionList.empty())
-					break;
-				else 	// find the shortest seek	 time
+				SSTime = abs(MissionList[0]->getFrom() - elevator[i].getPosition());
+				iter = MissionList.begin();
+				SSTiter = iter;
+				for (iter = MissionList.begin() , k = 0; iter != MissionList.end(); ++iter,++k)
 				{
-					SSTime = MissionList[0].getFrom()
-					for (iter)
-				}
-				if(elevator[i].getStatus() == 0)
-				{
-					ptrMission = MissionQ.front();
-					MissionQ.pop();
-					if(ptrMission->getPassenger() <= capacity)
+					int timeDiff = abs(MissionList[k]->getFrom() - elevator[i].getPosition());
+					if (timeDiff < SSTime)
 					{
-						elevator[i].takeMission(ptrMission);
-						elevator[i].setStatus(-1);
-						
-					}
-					else
-					{
-						Mission * temp = new Mission (ptrMission->getFrom(), ptrMission->getTo(), ptrMission->getPassenger() - capacity);
-						Mission * toTake = new Mission (ptrMission->getFrom(), ptrMission->getTo(), capacity);
-						elevator[i].takeMission(toTake);
-						elevator[i].setStatus(-1);
-						MissionQ.push(temp);
+						SSTime = timeDiff;
+						SSTiter = iter;
+						subscript = k;
 					}
 				}
-				
 			}
 
-		
-		
+			ptrMission = MissionList[subscript];
+			MissionList.erase(SSTiter);
+			if(ptrMission->getPassenger() <= capacity)
+			{
+				elevator[i].takeMission(ptrMission );
+				elevator[i].setStatus(-1);
+
+			}
+			else
+			{
+				Mission * temp = new Mission (ptrMission->getFrom(), ptrMission->getTo(), ptrMission->getPassenger() - capacity);
+				Mission * toTake = new Mission (ptrMission->getFrom(), ptrMission->getTo(), capacity);
+				elevator[i].takeMission(toTake);
+				elevator[i].setStatus(-1);
+				MissionList.push_back(temp);
+			}
+
+
+		}
+
+
+
 		// elevator run
 		for(i = 1; i <= elevatorNum; i++)
 		{
 			if(elevator[i].getStatus() == 0)												// when elevator has no mission taken and to be taken
 				continue;
-			
+
 			else if(elevator[i].getStatus() == 1)										// when elevator has mission taken
 			{
 				ptrMission = elevator[i].getMission();
@@ -206,15 +225,19 @@ void FCFSController ::control()
 					//reach
 					elevator[i].setStatus(0);
 					elevator[i].drop();
-					delete elevator[i].getMission();
-					elevator[i].setMissionNull();
+					if (elevator[i].getMission() != NULL)
+					{
+					    delete elevator[i].getMission();
+					    elevator[i].setMissionNull();
+					}
+
 				}
 				else
 				{
 					elevator[i].move(ptrMission->getTo());
 				}
 			}
-			
+
 			else if(elevator[i].getStatus() == -1)									// when elevator has mission to be taken
 			{
 				ptrMission = elevator[i].getMission();
@@ -229,9 +252,9 @@ void FCFSController ::control()
 				{
 					elevator[i].move(ptrMission->getFrom());
 				}
-				
+
 			}
-			
+
 		}
 	}
 }

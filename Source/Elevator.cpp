@@ -1,5 +1,7 @@
 #include "../Include/Elevator.h"
 
+extern Time globalClock;
+
 Elevator::Elevator()
 {
 	cur_mission = NULL;
@@ -41,6 +43,7 @@ void Elevator::pick()
 {
 	passenger += cur_mission->getPassenger();
 	missionNum++;
+	cur_mission->picked(globalClock.getTime());
 	// take 1 unit time
 }
 

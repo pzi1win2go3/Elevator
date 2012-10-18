@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Mission.h"
+#include "Time.h"
 using namespace std;
 
 class Elevator

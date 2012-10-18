@@ -15,6 +15,7 @@ int capacity;
 int elevatorNum;
 int storey;
 double lambda;
+Time globalClock;
 //////////////////////
 //////////////////////
 
@@ -47,7 +48,7 @@ int main(int argc, char *argv[])
 		int missionNum = 3;	// missions generated per unit time
 		while(missionNum--)
 		{
-			Mission *newMission = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), controller.globalClock.getTime());
+			Mission *newMission = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), globalClock.getTime());
 			controller.storeMission(newMission);
 		}
 

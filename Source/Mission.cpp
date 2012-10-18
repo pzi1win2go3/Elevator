@@ -8,6 +8,10 @@ Mission::Mission(int initFrom, int initTo, int initPassenger, int initBornTime)
 	bornTime = initBornTime;
 }
 
+void Mission::picked(int initPickedTime)
+{
+	pickedTime = initPickedTime;
+}
 //////////////////////////////////////////////////////////////////
 /////////////////////////// API here /////////////////////////////
 int Mission::getFrom()
@@ -22,9 +26,13 @@ int Mission::getPassenger()
 {
 	return passenger;
 }
-int Mission::getLifeTime(int assignedTime)
+int Mission::getWaitingTime(int pickedTime)
 {
-	return assignedTime - bornTime;
+	return pickedTime - bornTime;
+}
+int Mission::getRunTime(int completedTime)
+{
+	return completedTime - pickedTime;
 } 
 int Mission::getBornTime()
 {

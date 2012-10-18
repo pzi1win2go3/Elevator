@@ -17,15 +17,19 @@ public:
 	/////////////////////
 	/////////////////////
 
-	void updateWaitingTime(Mission *);    // to call 2 functions below, called when a mission is waiting every 1 unit time
+	void updateWaitingTime(Mission *);    // to call 3 functions below, called when a mission is waiting every 1 unit time
 	void updateMaxWaitingTime(Mission *); 
+	void updateMinWaitingTime(Mission *);
 	void updateAveWaitingTime(Mission *);	
+	void updateRunTime(Mission *);
+	void updateMaxRunTime(Mission *); 
+	void updateMinRunTime(Mission *);
+	void updateAveRunTime(Mission *);	
+
 	void updateAveFlow();	 								// called when every 1 unit time
 
 	virtual void control() = 0;
 	virtual void storeMission(Mission *) = 0;
-
-	Time globalClock;				// clock
 
 protected:
 	int capacity;					
@@ -39,8 +43,13 @@ protected:
 	/////////////////////////
 	// for info collection //
 	int maxWaitingTime;
+	int minWaitingTime;
 	int aveWaitingTimeCount;
 	double aveWaitingTime;
+	int maxRunTime;
+	int minRunTime;
+	int aveRunTimeCount;
+	double aveRunTime;
 	double aveFlow;
 	double totalFlow;
 	/////////////////////////

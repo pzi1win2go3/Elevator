@@ -71,12 +71,16 @@ void ElevatorController::info()
 	printf("-----------------------------------------------\n");
 }
 
+void ElevatorController::updateWaitingTime(Mission * ptrMission)
+{
+	ElevatorController::updateMaxWaitingTime(ptrMission);
+	ElevatorController::updateAveWaitingTime(ptrMission);
+}
 void ElevatorController::updateMaxWaitingTime(Mission * ptrMission)
 {
 	if(ptrMission->getLifeTime(globalClock.getTime()) > maxWaitingTime)
 		maxWaitingTime = ptrMission->getLifeTime(globalClock.getTime());
 }
-
 void ElevatorController::updateAveWaitingTime(Mission * ptrMission)
 {
 	aveWaitingTime = (ptrMission->getLifeTime(globalClock.getTime()) + aveWaitingTime * (double)aveWaitingTimeCount++) / (double)aveWaitingTimeCount;
@@ -173,14 +177,12 @@ void FCFSController::control()
 			{
 				ptrMission = elevator[i].getMission();
 
+				// update info
+				updateWaitingTime(ptrMission);
+
 				//reach
 				if(elevator[i].getPosition() == ptrMission->getFrom())
 				{
-
-					// update info
-					updateMaxWaitingTime(ptrMission);
-					updateAveWaitingTime(ptrMission);
-
 					elevator[i].setStatus(1);
 					waiting[ptrMission->getFrom()] -= ptrMission->getPassenger();
 					elevator[i].pick();
@@ -211,6 +213,7 @@ void SSTFController::control()
 	int i,j,k,t;	 // FOR DEBUG
 	Mission * ptrMission;
 	vector<Mission*>::iterator iter;
+	vector<Mission*>::iterator infoIter;
 	vector<Mission*>::iterator SSTiter;
 	int SSTime, subscript = 0;
 
@@ -221,6 +224,11 @@ void SSTFController::control()
 		globalClock.tick();
 		sleep(1);
 
+		// update infos for every mission in MissionList
+		for(infoIter = MissionList.begin(); infoIter != MissionList.end(); infoIter++)
+		{
+			updateWaitingTime(*infoIter);
+		}
 
 		// assign mission
 		for(i = 1; i <= elevatorNum; i++)
@@ -310,11 +318,6 @@ void SSTFController::control()
 				//reach
 				if(elevator[i].getPosition() == ptrMission->getFrom())
 				{
-
-					// update info
-					updateMaxWaitingTime(ptrMission);
-					updateAveWaitingTime(ptrMission);
-
 					elevator[i].setStatus(1);
 					waiting[ptrMission->getFrom()] -= ptrMission->getPassenger();
 					elevator[i].pick();

@@ -38,8 +38,8 @@ ElevatorController::ElevatorController(int init_capacity, int init_storey, int i
 void ElevatorController::show()
 {
 	int i,j,k;
-	system("clear");
-	printf("Storey                    Waiting");
+	// system("clear");
+	printf("Storey          Waiting  ");
 	for(i = 1; i <= elevatorNum; i++)
 	{
 		printf("  Elevator %d  ", i);
@@ -48,22 +48,19 @@ void ElevatorController::show()
 
 	for(i = storey; i >= 1; i--)
 	{
-		if (i < 10)
-			printf("%d                           %d", i, waiting[i]);
-		else
-			printf("%d                          %d", i, waiting[i]);
+		printf("  %2d              %2d ", i, waiting[i]);
 
-# ifdef DEBUG
-        if (waiting[i] < 0)
-            cin.get();
-# endif
+// # ifdef DEBUG
+//         if (waiting[i] < 0)
+//             cin.get();
+// # endif
 
 		for(j = 1; j <= elevatorNum; j++)
 		{
 			if(elevator[j].getPosition() == i)
-				printf("      [%d]      ", elevator[j].getPassenger());
+				printf("         [%d]  ", elevator[j].getPassenger());
 			else
-				printf("               ");
+				printf("              ");
 		}
 		printf("\n");
 	}

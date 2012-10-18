@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	{
 
 		// 1. generate missions here
-		int missionNum = 3;	// missions generated per unit time
+		int missionNum = 5;	// missions generated per unit time
 		while(missionNum--)
 		{
 			Mission *newMission = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), globalClock.getTime());

@@ -38,7 +38,7 @@ ElevatorController::ElevatorController(int init_capacity, int init_storey, int i
 void ElevatorController::show()
 {
 	int i,j,k;
-	// system("clear");
+	system("clear");
 	printf("Storey          Waiting  ");
 	for(i = 1; i <= elevatorNum; i++)
 	{
@@ -50,10 +50,10 @@ void ElevatorController::show()
 	{
 		printf("  %2d              %2d ", i, waiting[i]);
 
-// # ifdef DEBUG
-//         if (waiting[i] < 0)
-//             cin.get();
-// # endif
+# ifdef DEBUG
+        if (waiting[i] < 0)
+            cin.get();
+# endif
 
 		for(j = 1; j <= elevatorNum; j++)
 		{
@@ -90,36 +90,43 @@ void ElevatorController::updateWaitingTime(Mission * ptrMission)
 	ElevatorController::updateAveWaitingTime(ptrMission);
 	ElevatorController::updateMinWaitingTime(ptrMission);
 }
+
 void ElevatorController::updateRunTime(Mission * ptrMission)
 {
 	ElevatorController::updateMaxRunTime(ptrMission);
 	ElevatorController::updateAveRunTime(ptrMission);
 	ElevatorController::updateMinRunTime(ptrMission);
 }
+
 void ElevatorController::updateMaxWaitingTime(Mission * ptrMission)
 {
 	if(ptrMission->getWaitingTime(globalClock.getTime()) > maxWaitingTime)
 		maxWaitingTime = ptrMission->getWaitingTime(globalClock.getTime());
 }
+
 void ElevatorController::updateMinWaitingTime(Mission * ptrMission)
 {
 	if(ptrMission->getWaitingTime(globalClock.getTime()) < minWaitingTime)
 		minWaitingTime = ptrMission->getWaitingTime(globalClock.getTime());
 }
+
 void ElevatorController::updateAveWaitingTime(Mission * ptrMission)
 {
 	aveWaitingTime = (ptrMission->getWaitingTime(globalClock.getTime()) + aveWaitingTime * (double)aveWaitingTimeCount++) / (double)aveWaitingTimeCount;
 }
+
 void ElevatorController::updateMaxRunTime(Mission * ptrMission)
 {
 	if(ptrMission->getRunTime(globalClock.getTime()) > maxRunTime)
 		maxRunTime = ptrMission->getRunTime(globalClock.getTime());
 }
+
 void ElevatorController::updateMinRunTime(Mission * ptrMission)
 {
 	if(ptrMission->getRunTime(globalClock.getTime()) < minRunTime)
 		minRunTime = ptrMission->getRunTime(globalClock.getTime());
 }
+
 void ElevatorController::updateAveRunTime(Mission * ptrMission)
 {
 	aveRunTime = (ptrMission->getRunTime(globalClock.getTime()) + aveRunTime * (double)aveRunTimeCount++) / (double)aveRunTimeCount;
@@ -182,7 +189,6 @@ void FCFSController::control()
 						MissionQ.push(temp);
 					}
 				}
-
 			}
 		}
 
@@ -240,9 +246,7 @@ void FCFSController::control()
 				{
 					elevator[i].move(ptrMission->getFrom());
 				}
-
 			}
-
 		}
 		updateAveFlow();
 	}
@@ -321,11 +325,7 @@ void SSTFController::control()
 				elevator[i].setStatus(-1);
 				MissionList.push_back(temp);
 			}
-
-
 		}
-
-
 
 		// elevator run
 		for(i = 1; i <= elevatorNum; i++)
@@ -354,7 +354,6 @@ void SSTFController::control()
 					    delete elevator[i].getMission();
 					    elevator[i].setMissionNull();
 					}
-
 				}
 				else
 				{
@@ -378,9 +377,7 @@ void SSTFController::control()
 				{
 					elevator[i].move(ptrMission->getFrom());
 				}
-
 			}
-
 		}
 		updateAveFlow();
 	}

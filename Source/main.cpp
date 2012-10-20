@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <cstdio>
+#include <string>
 
 #include "../Include/Mission.h"
 #include "../Include/Elevator.h"
@@ -19,7 +20,7 @@ Time globalClock;
 //////////////////////
 //////////////////////
 
-int main(int argc, char *argv[])
+void input()
 {
 	printf("请输入最大乘客数:\n");
 	scanf("%d", &capacity);
@@ -32,29 +33,68 @@ int main(int argc, char *argv[])
 
 	printf("请输入泊松分布参数:\n");
 	scanf("%lf", &lambda);
+}
 
-	srand(time(0));
-
-
-	// generate controller
-	// HERE decide which algorithm to use
-	// 1.FCFS 2.SSTF
-	LOOKController controller(capacity, storey, elevatorNum);
-
+int main(int argc, char *argv[])
+{
 	while(true)
 	{
+		ElevatorController * controller;
+		int decision;
+		bool over = false;
 
-		// 1. generate missions here
-		int missionNum = 1;	// missions generated per unit time
-		while(missionNum--)
+		printf("----请输入您要使用的算法的编号(1, 2, 3, 4):\n");
+		printf("	1.FCFS 先到先服务\n");
+		printf("	2.SSTF 最短搜索时间\n");
+		printf("	3.SCAN\n");
+		printf("	4.LOOK\n");
+		cin >> decision;
+
+		if(decision == 1)
 		{
-			Mission *newMission = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), globalClock.getTime());
-			controller.storeMission(newMission);
+			input();
+			controller = new FCFSController(capacity, storey, elevatorNum);
+		}
+		else if(decision == 2)
+		{
+			input();
+			controller = new SSTFController(capacity, storey, elevatorNum);
+		}
+		else if(decision == 3)
+		{
+			input();
+			controller = new SCANController(capacity, storey, elevatorNum);
+		}
+		else if(decision == 4)
+		{
+			input();
+			controller = new LOOKController(capacity, storey, elevatorNum);
+		}
+		else
+		{
+			printf("您没有输入正确的选项。\n");
+			continue;
 		}
 
-		// 2. control
-		controller.control();
+		srand(time(0));
 
+		while(true)
+		{
+			// 1. generate missions here
+			int missionNum = 3;	// missions generated per unit time
+			while(missionNum--)
+			{
+				Mission *newMission = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), globalClock.getTime());
+				controller->storeMission(newMission);
+			}
+			// 2. control
+			controller->control();
+
+			if(globalClock.getTime() == 100)
+			{
+				break;
+			}
+		}
 	}
 
 	return 0;

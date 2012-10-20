@@ -5,6 +5,8 @@
 #include <iostream>
 #include <cmath>
 
+extern Time globalClock;
+
 class ElevatorController
 {
 public:

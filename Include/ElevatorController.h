@@ -10,23 +10,23 @@ extern Time globalClock;
 class ElevatorController
 {
 public:
-	ElevatorController(int init_capacity, int init_storey, int init_elevatorNum);	// construction	
-	
+	ElevatorController(int init_capacity, int init_storey, int init_elevatorNum);	// construction
+
 	/////////////////////
 	// print functions //
-	void show();  
-	void info();	
+	void show();
+	void info();
 	/////////////////////
 	/////////////////////
 
 	void updateWaitingTime(Mission *);    // to call 3 functions below, called when a mission is waiting every 1 unit time
-	void updateMaxWaitingTime(Mission *); 
+	void updateMaxWaitingTime(Mission *);
 	void updateMinWaitingTime(Mission *);
-	void updateAveWaitingTime(Mission *);	
+	void updateAveWaitingTime(Mission *);
 	void updateRunTime(Mission *);
-	void updateMaxRunTime(Mission *); 
+	void updateMaxRunTime(Mission *);
 	void updateMinRunTime(Mission *);
-	void updateAveRunTime(Mission *);	
+	void updateAveRunTime(Mission *);
 
 	void updateAveFlow();	 								// called when every 1 unit time
 
@@ -34,7 +34,7 @@ public:
 	virtual void storeMission(Mission *) = 0;
 
 protected:
-	int capacity;					
+	int capacity;
 	int storey;
 	int elevatorNum;
 	int DURATION;	  				// duration of generating missions

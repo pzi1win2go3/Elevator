@@ -142,7 +142,7 @@ void LOOKController::control()
 
 void LOOKController::storeMission(Mission * ptrMission)
 {
-    if (ptrMission->getFrom() == ptrMission->getTo())
+    if ((ptrMission->getFrom() == ptrMission->getTo() || ptrMission->getPassenger() <= 0))
     {
         delete ptrMission;
         return;

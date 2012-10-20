@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <cstdlib>
 
-#define DEBUG
+//#define DEBUG
 
 extern Time globalClock;
 
@@ -25,7 +25,7 @@ ElevatorController::ElevatorController(int init_capacity, int init_storey, int i
 	totalFlow = 0;
 
 	DURATION = 10;
-	
+
 	elevator =  new Elevator[elevatorNum + 2];
 	for(int i = 1; i <= elevatorNum; i++)
 	{
@@ -137,7 +137,7 @@ void ElevatorController::updateAveRunTime(Mission * ptrMission)
 //////////////////////////////////////////////////////////////////
 ////////////////////// Flow Info Update //////////////////////////
 void ElevatorController::updateAveFlow()
-{ 
+{
 	for(int i = 1; i <= elevatorNum; i++)
 	{
 		totalFlow += elevator[i].getPassenger();
@@ -197,11 +197,11 @@ void FCFSController::control()
 		for(i = 1; i <= elevatorNum; i++)
 		{
 			// when elevator has no mission taken and to be taken
-			if(elevator[i].getStatus() == 0)												
+			if(elevator[i].getStatus() == 0)
 				continue;
 
 			// when elevator has mission taken
-			else if(elevator[i].getStatus() == 1)										
+			else if(elevator[i].getStatus() == 1)
 			{
 				ptrMission = elevator[i].getMission();
 
@@ -209,17 +209,21 @@ void FCFSController::control()
 				if(elevator[i].getPosition() == ptrMission->getTo())
 				{
 					elevator[i].setStatus(0);
+					updateRunTime(elevator[i].getMission());
 					elevator[i].drop();
 
 					// update info
-					updateRunTime(elevator[i].getMission());
+
 
 					// mission completed
-					if(elevator[i].getMission() != NULL)	
+					// function moved to class Elevator-drop()
+					/*
+					if(elevator[i].getMission() != NULL)
 					{
 					    delete elevator[i].getMission();
 					    elevator[i].setMissionNull();
 					}
+					*/
 				}
 				else
 				{
@@ -228,7 +232,7 @@ void FCFSController::control()
 			}
 
 			// when elevator has mission to be taken
-			else if(elevator[i].getStatus() == -1)									
+			else if(elevator[i].getStatus() == -1)
 			{
 				ptrMission = elevator[i].getMission();
 
@@ -254,6 +258,11 @@ void FCFSController::control()
 
 void FCFSController::storeMission(Mission * ptrMission)
 {
+    if (ptrMission->getFrom() == ptrMission->getTo())
+    {
+        delete ptrMission;
+        return;
+    }
 	waiting[ptrMission->getFrom()] += ptrMission->getPassenger();
 	MissionQ.push(ptrMission);
 }
@@ -292,7 +301,7 @@ void SSTFController::control()
 				break;
 
 			// find the shortest seek	time
-			else 	
+			else
 			{
 				SSTime = abs(MissionList[0]->getFrom() - elevator[i].getPosition());
 				iter = MissionList.begin();
@@ -320,7 +329,7 @@ void SSTFController::control()
 			{
 				Mission * temp = new Mission (ptrMission->getFrom(), ptrMission->getTo(), ptrMission->getPassenger() - capacity, ptrMission->getBornTime());
 				Mission * toTake = new Mission (ptrMission->getFrom(), ptrMission->getTo(), capacity, ptrMission->getBornTime());
-				
+
 				elevator[i].takeMission(toTake);
 				elevator[i].setStatus(-1);
 				MissionList.push_back(temp);
@@ -331,11 +340,11 @@ void SSTFController::control()
 		for(i = 1; i <= elevatorNum; i++)
 		{
 			// when elevator has no mission taken and to be taken
-			if(elevator[i].getStatus() == 0)												
+			if(elevator[i].getStatus() == 0)
 				continue;
 
 			// when elevator has mission taken
-			else if(elevator[i].getStatus() == 1)										
+			else if(elevator[i].getStatus() == 1)
 			{
 				ptrMission = elevator[i].getMission();
 
@@ -343,17 +352,20 @@ void SSTFController::control()
 				if(elevator[i].getPosition() == ptrMission->getTo())
 				{
 					elevator[i].setStatus(0);
+					updateRunTime(elevator[i].getMission());
 					elevator[i].drop();
 
 					// update info
-					updateRunTime(elevator[i].getMission());
 
-					// mission completed
-					if (elevator[i].getMission() != NULL)	 
+
+					// mission completed - function moved to class elevator-drop()
+					/*
+					if (elevator[i].getMission() != NULL)
 					{
 					    delete elevator[i].getMission();
 					    elevator[i].setMissionNull();
 					}
+					*/
 				}
 				else
 				{
@@ -362,7 +374,7 @@ void SSTFController::control()
 			}
 
 			// when elevator has mission to be taken
-			else if(elevator[i].getStatus() == -1)									
+			else if(elevator[i].getStatus() == -1)
 			{
 				ptrMission = elevator[i].getMission();
 
@@ -385,6 +397,11 @@ void SSTFController::control()
 
 void SSTFController::storeMission(Mission* ptrMission)
 {
+    if (ptrMission->getFrom() == ptrMission->getTo())
+    {
+        delete ptrMission;
+        return;
+    }
 	waiting[ptrMission->getFrom()] += ptrMission->getPassenger();
 	MissionList.push_back(ptrMission);
 }

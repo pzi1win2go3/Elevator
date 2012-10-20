@@ -77,5 +77,16 @@ public:
 
 private:
 	vector<Mission *> MissionList;
+};
+
+class SCANController:public ElevatorController
+{
+public:
+	SCANController  (int init_capacity, int init_storey, int init_elevatorNum);
+	void control();
+	void storeMission(Mission*);
+private:
+	vector<Mission *> MissionList;
 
 };
+

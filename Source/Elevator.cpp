@@ -4,7 +4,7 @@ extern Time globalClock;
 
 Elevator::Elevator()
 {
-	cur_mission = NULL;
+	cur_mission = sec_mission= thd_mission= NULL;
 	missionNum = 0;
 	position = 1;
 	destination = 0;
@@ -21,8 +21,15 @@ void Elevator::setId(int init_id)
 
 void Elevator::takeMission(Mission * mission)
 {
-	cur_mission = mission;
 	missionNum++;
+
+	if (missionNum == 1)
+        cur_mission = mission;
+    else if (missionNum == 2)
+        sec_mission = mission;
+    else
+        thd_mission = mission;
+
 }
 
 void Elevator::move(int order)
@@ -39,17 +46,51 @@ void Elevator::move(int order)
 	// take 1 unit time
 }
 
-void Elevator::pick()
+void Elevator::pick(int num)
 {
-	passenger += cur_mission->getPassenger();
-	missionNum++;
-	cur_mission->picked(globalClock.getTime());
+	//missionNum++;  why here?
+	if (num == 1)
+	{
+		passenger += cur_mission->getPassenger();
+		cur_mission->picked(globalClock.getTime());
+	}
+
+	else if (num == 2)
+	{
+		passenger += sec_mission->getPassenger();
+		sec_mission->picked(globalClock.getTime());
+	}
+	else
+	{
+		passenger += thd_mission->getPassenger();
+		thd_mission->picked(globalClock.getTime());
+	}
 	// take 1 unit time
 }
 
-void Elevator::drop()
+void Elevator::drop(int num)
 {
-	passenger -= cur_mission->getPassenger();
+	if (num == 1)
+	{
+		passenger -= cur_mission->getPassenger();
+		delete cur_mission;
+		cur_mission = sec_mission;
+		sec_mission = thd_mission;
+		thd_mission = NULL;
+	}
+	else if (num == 2)
+	{
+		passenger -= sec_mission->getPassenger();
+		delete sec_mission;
+		sec_mission = thd_mission;
+		thd_mission = NULL;
+	}
+	else
+	{
+		passenger -= thd_mission->getPassenger();
+		delete thd_mission;
+		thd_mission = NULL;
+	}
 	missionNum--;
 	// take 1 unit time
 }
@@ -61,11 +102,23 @@ void Elevator::setStatus(int newStatus)
 	return;
 }
 
-void Elevator::setMissionNull()
+void Elevator::setPosition(int newPosition)
 {
-	cur_mission = NULL;
+	position = newPosition;
+}
+
+void Elevator::setMissionNull(int num)
+{
+	if (num == 1)
+		cur_mission = NULL;
+	else if (num == 2)
+		sec_mission = NULL;
+	else
+		thd_mission = NULL;
 	return;
 }
+
+
 
 //////////////////////////////////////////////////////////////////
 /////////////////////////// API here /////////////////////////////
@@ -93,10 +146,18 @@ bool Elevator::isEmpty()
 {
 	return empty;
 }
-Mission* Elevator::getMission()
+Mission* Elevator::getMission(int num)
 {
-	return cur_mission;
+	if  (num == 1)
+		return cur_mission;
+	else if (num == 2)
+		return sec_mission;
+	else
+		return thd_mission;
 }
+
+
+
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 

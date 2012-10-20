@@ -39,13 +39,13 @@ int main(int argc, char *argv[])
 	// generate controller
 	// HERE decide which algorithm to use
 	// 1.FCFS 2.SSTF
-	FCFSController controller(capacity, storey, elevatorNum);
-	
+	SCANController controller(capacity, storey, elevatorNum);
+
 	while(true)
 	{
 
 		// 1. generate missions here
-		int missionNum = 5;	// missions generated per unit time
+		int missionNum = 1;	// missions generated per unit time
 		while(missionNum--)
 		{
 			Mission *newMission = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), globalClock.getTime());

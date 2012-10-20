@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	// generate controller
 	// HERE decide which algorithm to use
 	// 1.FCFS 2.SSTF
-	SCANController controller(capacity, storey, elevatorNum);
+	LOOKController controller(capacity, storey, elevatorNum);
 
 	while(true)
 	{

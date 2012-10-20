@@ -90,3 +90,12 @@ private:
 
 };
 
+class LOOKController:public ElevatorController
+{
+public:
+	LOOKController  (int init_capacity, int init_storey, int init_elevatorNum);
+	void control();
+	void storeMission(Mission*);
+private:
+	vector<Mission *> MissionList;
+};

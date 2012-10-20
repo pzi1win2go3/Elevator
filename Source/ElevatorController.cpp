@@ -22,7 +22,7 @@ ElevatorController::ElevatorController(int init_capacity, int init_storey, int i
 	aveFlow = 0;
 	totalFlow = 0;
 
-	DURATION = 10;
+	DURATION = 2;
 
 	elevator =  new Elevator[elevatorNum + 2];
 	for(int i = 1; i <= elevatorNum; i++)

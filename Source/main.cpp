@@ -8,6 +8,8 @@
 #include "../Include/Poisson.h"
 #include "../Include/ElevatorController.h"
 
+# define DEBUG
+
 using namespace std;
 
 //////////////////////
@@ -44,13 +46,19 @@ int main(int argc, char *argv[])
 		bool over = false;
 
 		printf("----请输入您要使用的算法的编号(1, 2, 3, 4):\n");
+		printf("	0.退出\n");
 		printf("	1.FCFS 先到先服务\n");
 		printf("	2.SSTF 最短搜索时间\n");
 		printf("	3.SCAN\n");
 		printf("	4.LOOK\n");
 		cin >> decision;
 
-		if(decision == 1)
+		if(decision == 0)
+		{
+			printf("电梯模拟器演示完毕，感谢您的使用，下次再见！\n");
+			break;
+		}
+		else if(decision == 1)
 		{
 			input();
 			controller = new FCFSController(capacity, storey, elevatorNum);
@@ -78,10 +86,12 @@ int main(int argc, char *argv[])
 
 		srand(time(0));
 
+		globalClock.reset();
+
 		while(true)
-		{
+		{			
 			// 1. generate missions here
-			int missionNum = 3;	// missions generated per unit time
+			int missionNum = 1;	// missions generated per DURATION
 			while(missionNum--)
 			{
 				Mission *newMission = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), globalClock.getTime());
@@ -90,8 +100,9 @@ int main(int argc, char *argv[])
 			// 2. control
 			controller->control();
 
-			if(globalClock.getTime() == 100)
+			if(globalClock.getTime() >= 100)
 			{
+				delete controller;
 				break;
 			}
 		}

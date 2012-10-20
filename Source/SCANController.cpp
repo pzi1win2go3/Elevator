@@ -66,8 +66,8 @@ void SCANController::control()
 			for (iter = MissionList.begin(); iter != MissionList.end();)
 			{
 			  ptrMission = *iter;
-				if (ptrMission -> getFrom() == elevator[i].getPosition() && elevator[i].getMissionNum() < 3 &&ptrMission ->getPassenger() + elevator[i].getPassenger() <= capacity)
-				{
+			  if (ptrMission -> getFrom() == elevator[i].getPosition() && elevator[i].getMissionNum() < 3 &&(ptrMission->getTo() - ptrMission->getFrom())*elevator[i].getStatus() >= 0)
+			  {
 		    	if (ptrMission->getPassenger()+elevator[i].getPassenger() <= capacity)     // same direction
 		    	{
 		        elevator[i].takeMission(ptrMission );

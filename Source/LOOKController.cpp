@@ -77,22 +77,29 @@ void LOOKController::control()
 		vector<Mission*>::iterator iter;
 		for (iter = MissionList.begin(); iter != MissionList.end();)
 		{
-		    ptrMission = *iter;
-			if (ptrMission -> getFrom() == elevator[i].getPosition() && elevator[i].getMissionNum() < 3 &&ptrMission ->getPassenger() + elevator[i].getPassenger() <= capacity)
+		    	ptrMission = *iter;
+			if (ptrMission -> getFrom() == elevator[i].getPosition() && elevator[i].getMissionNum() < 3 &&(ptrMission->getTo() - ptrMission->getFrom())*elevator[i].getStatus() >= 0)
 			{
-			    if ((ptrMission->getTo() - ptrMission->getFrom())*elevator[i].getStatus() >= 0)     // same direction
-			    {
-			        stop[i] = true;
-			        elevator[i].takeMission(ptrMission );
+				stop[i] = true;
+			    	if (ptrMission->getPassenger()+elevator[i].getPassenger() <= capacity)     // same direction
+			    	{
+
+			         elevator[i].takeMission(ptrMission );
 	                  	  elevator[i].pick(elevator[i].getMissionNum());
 	                  	  waiting[ptrMission ->getFrom()] -= ptrMission ->getPassenger();
 	                  	  iter = MissionList.erase(iter);
-			    }
-			    else
-			    {
-			        ++iter;
-			    }
-
+			  	  }
+			   	 else
+			  	  {
+				        int max = capacity-elevator[i].getPassenger();
+				        Mission* toTake = new Mission(ptrMission->getFrom(),ptrMission->getTo(),max,ptrMission->getBornTime());
+				        Mission* left = new Mission(ptrMission->getFrom(),ptrMission->getTo(),ptrMission->getPassenger()-max,ptrMission->getBornTime());
+				        elevator[i].takeMission(toTake);
+	                  	  	elevator[i].pick(elevator[i].getMissionNum());
+	                  	  	waiting[ptrMission ->getFrom()] -= toTake ->getPassenger();
+	                  	  	iter = MissionList.erase(iter);
+	                  	  	MissionList.push_back(left);
+			  	  }
 
 			}
 			else

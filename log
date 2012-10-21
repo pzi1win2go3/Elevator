@@ -1,3 +1,9 @@
+commit fddfa2c8961f5ee90c5a47005b2f82062e6dff2e
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 21 18:23:07 2012 +0800
+
+    fix flow bug and compiler problem
+
 commit f953590b6c36d314d1241d9cf6052fafefbaf880
 Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
 Date:   Sun Oct 21 16:54:07 2012 +0800

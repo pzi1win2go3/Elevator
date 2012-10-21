@@ -38,7 +38,7 @@ ElevatorController::ElevatorController(int init_capacity, int init_storey, int i
 void ElevatorController::show()
 {
 	int i,j,k;
-	system("clear");
+	system("cls");
 
 	// title line
 	printf("Storey   Waiting    ");
@@ -143,12 +143,9 @@ void ElevatorController::updateAveRunTime(Mission * ptrMission)
 
 //////////////////////////////////////////////////////////////////
 ////////////////////// Flow Info Update //////////////////////////
-void ElevatorController::updateAveFlow()
+void ElevatorController::updateAveFlow(Mission * ptrMission)
 {
-	for(int i = 1; i <= elevatorNum; i++)
-	{
-		totalFlow += elevator[i].getPassenger();
-	}
+	totalFlow += ptrMission->getPassenger();
 	aveFlow = totalFlow / (double)globalClock.getTime();
 }
 //////////////////////////////////////////////////////////////////

@@ -30,7 +30,7 @@ public:
 	void updateMinRunTime(Mission *);			
 	void updateAveRunTime(Mission *);
 
-	void updateAveFlow();	 								// called when every 1 unit time
+	void updateAveFlow(Mission *);	 								// called when every 1 unit time
 
 	virtual void control() = 0;
 	virtual void storeMission(Mission *) = 0;

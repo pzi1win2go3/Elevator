@@ -13,7 +13,7 @@ void FCFSController::control()
 		show();
 		info();
 		globalClock.tick();
-		sleep(1);
+		Sleep(1000);
 
 		//   assign mission
 		if( ! MissionQ.empty() )
@@ -70,7 +70,8 @@ void FCFSController::control()
 					elevator[i].setStatus(0);
 
 					// update info
-					updateRunTime(elevator[i].getMission());
+					updateRunTime(ptrMission);
+					updateAveFlow(ptrMission);
 
 					elevator[i].drop();				
 				}
@@ -101,7 +102,6 @@ void FCFSController::control()
 				}
 			}
 		}
-		updateAveFlow();
 	}
 }
 

@@ -23,7 +23,7 @@ void SCANController::control()
 	  show();
 	  info();
 	  globalClock.tick();
-	  sleep(1);
+	  Sleep(1000);
 
 	  bool * stop = new bool[elevatorNum + 1];          // have stopped here?
 
@@ -53,9 +53,10 @@ void SCANController::control()
 			{
 			  stop[i] = true;
 			  iter = find(pickedMissionList.begin(),pickedMissionList.end(),elevator[i].getMission(1));
-				pickedMissionList.erase(iter);
 				updateMinRunTime(*iter);
 				updateAveRunTime(*iter);
+				updateAveFlow(*iter);
+				pickedMissionList.erase(iter);
 
 			 	elevator[i].drop(1);
 			}
@@ -63,9 +64,10 @@ void SCANController::control()
 			{
 				stop[i] = true;
 				iter = find(pickedMissionList.begin(),pickedMissionList.end(),elevator[i].getMission(2));
+				updateMinRunTime(*iter);
+				updateAveRunTime(*iter);
+				updateAveFlow(*iter);
 			 	pickedMissionList.erase(iter);
-			 	updateMinRunTime(*iter);
-			 	updateAveRunTime(*iter);
 
 				elevator[i].drop(2);
 			}
@@ -73,9 +75,10 @@ void SCANController::control()
 			{
 			  stop[i] = true;
 			 	iter = find(pickedMissionList.begin(),pickedMissionList.end(),elevator[i].getMission(3));
-			 	pickedMissionList.erase(iter);
 			 	updateMinRunTime(*iter);
 			 	updateAveRunTime(*iter);
+			 	updateAveFlow(*iter);
+			 	pickedMissionList.erase(iter);
 
 				elevator[i].drop(3);
 			}
@@ -150,7 +153,6 @@ void SCANController::control()
 		{
 			updateMaxRunTime(*infoIter);
 		}
-		updateAveFlow();
 	}
 }
 

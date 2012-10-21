@@ -17,7 +17,7 @@ void SSTFController::control()
 		show();
 		info();
 		globalClock.tick();
-		sleep(1);
+		Sleep(1000);
 
 		// assign mission
 		for(i = 1; i <= elevatorNum; i++)
@@ -84,6 +84,7 @@ void SSTFController::control()
 					elevator[i].setStatus(0);
 
 					// update info
+					updateAveFlow(ptrMission);
 					updateMinRunTime(ptrMission);
 					updateAveRunTime(ptrMission);
 
@@ -130,7 +131,6 @@ void SSTFController::control()
 		{
 			updateMaxRunTime(*infoIter);
 		}
-		updateAveFlow();
 	}
 }
 

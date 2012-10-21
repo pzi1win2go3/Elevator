@@ -1,0 +1,498 @@
+commit f953590b6c36d314d1241d9cf6052fafefbaf880
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 21 16:54:07 2012 +0800
+
+    modify readme
+
+commit 5bb7703027b2d7f21954b003c0ca9a22eb161d85
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 21 14:55:35 2012 +0800
+
+    change chinese to english
+
+commit 228162e8f75d5ea2abe96b905b471dab6fc75f34
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 21 13:47:52 2012 +0800
+
+    modify notes
+
+commit 93d6c6e967b493ec8d91e16cdb69e97f017c9c78
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 21 11:31:49 2012 +0800
+
+    append new member takenmissionlist
+
+commit c2fe8bd9e15b114f73a756bc4d3103b98349953c
+Merge: 12e901e 8c950bc
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 21 11:09:08 2012 +0800
+
+    Merge branch 'master' of http://github.com/pzi1win2go3/Elevator
+
+commit 8c950bc06afd574b441ccd83ed72660b2ac54e50
+Merge: 2bfeb5b 295a5ba
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 21 11:09:10 2012 +0800
+
+    Merge branch 'master' of https://github.com/pzi1win2go3/Elevator
+
+commit 2bfeb5b41f961d00779b9f8b9d089484c9e96c88
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 21 11:08:56 2012 +0800
+
+    fixing bug
+
+commit 12e901e16413a3e7258091a41cf7ebc2df69d76b
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 21 11:08:47 2012 +0800
+
+    for merge
+
+commit 295a5baf5be1ae479b9977f7f1a2a6bbf1e88ec5
+Merge: 8bbbddf 7c811c3
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 21 11:05:39 2012 +0800
+
+    Merge branch 'master' of http://github.com/pzi1win2go3/Elevator
+
+commit 8bbbddf3e3f360a9583576a8e705def1bfba0c85
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 21 11:04:51 2012 +0800
+
+    for merging
+
+commit 7c811c350ea8502316dc214b72f62ddfd3992922
+Merge: 9dec4c7 e655a28
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 21 10:48:11 2012 +0800
+
+    Merge branch 'master' of https://github.com/pzi1win2go3/Elevator
+    
+    Conflicts:
+    	Source/ElevatorController.cpp
+
+commit 9dec4c757eec5a4af1b2ed48d1ffe4c58d6c4d6e
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 21 10:47:18 2012 +0800
+
+    fixing bug
+
+commit e655a2898013def604f3ed015ad0e0d7c7298c02
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 21 10:38:45 2012 +0800
+
+    modified the info function
+
+commit adca158afc719b35442f6a364055b0176705dc87
+Merge: f2ea973 d5245ef
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 21 01:18:39 2012 +0800
+
+    Merge branch 'master' of https://github.com/pzi1win2go3/Elevator
+
+commit f2ea9732b4865b5ba5e78dead4851af6af61abf0
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 21 01:18:25 2012 +0800
+
+    fix bug
+
+commit d5245efc31c44e8d60c8cf7cf8867cc58a43eb07
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 21 01:13:58 2012 +0800
+
+    modified function - storeMission
+
+commit b23331c75e5c21daeeece3f233b81e0780fe240b
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 21 00:57:43 2012 +0800
+
+    DEBUG
+
+commit 81d82cc80d38fdb4278a318624513b1c0f771a83
+Merge: fc1c14c 8a04946
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sat Oct 20 23:50:07 2012 +0800
+
+    Merge branch 'master' of https://github.com/pzi1win2go3/Elevator
+    
+    Conflicts:
+    	Source/LOOKController.cpp
+    	Source/SCANController.cpp
+    	Source/main.cpp
+
+commit fc1c14c2428a93e47c93468416009c3f8e9b4746
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sat Oct 20 23:42:22 2012 +0800
+
+    update main.cpp
+
+commit 8a04946ffdbb3fbd9434532622fac08006da9e81
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sat Oct 20 23:16:45 2012 +0800
+
+    fix a bug occurred when a mission is too large
+    mission can be divided into several parts now
+
+commit dcd04be80b3aa0bb2582d3b61cf07ddae2f63962
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sat Oct 20 14:42:53 2012 +0800
+
+    append the fourth algorithm - LOOK algorithm
+    (actually a modified version of SCAN    XD )
+    info functions needed to be added in again~
+
+commit c38b604b35ddf966ceee71887d3a212dabad4b6e
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sat Oct 20 14:13:12 2012 +0800
+
+    SCAN algorithm completed!
+    Running without bugs so far.
+    info functions needed to be added in
+
+commit e349086c7575dc90cde9e2f738eff94dc04c666d
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Thu Oct 18 19:32:51 2012 +0800
+
+    fix
+
+commit 8c04048036310862b977fe11bb4b5b8d26c2bf40
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Thu Oct 18 19:18:49 2012 +0800
+
+    修改显示样式
+
+commit a525b0490b890d0642cef56390aea255f7dd0602
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Thu Oct 18 18:40:31 2012 +0800
+
+    更新了 info 收集与显示
+
+commit cc77c44a51cfc3b062b1301b4960c510028770b5
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Thu Oct 18 10:33:43 2012 +0800
+
+    1.FCFS:由于 MissionList 用 queue 保存，无法随机访问，故只能对已经分配出去的 mission 更新 info。
+    2.SSTF:可以实时更新所有等待中的 mission。
+
+commit 1138b0a83cfbab735851eebc16191366a01bed56
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Tue Oct 16 21:27:38 2012 +0800
+
+    Fix BUG! hahaha!
+
+commit 2f2274fb27bc695923d6bb8286436f9cc276530b
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Tue Oct 16 20:58:07 2012 +0800
+
+    fix
+
+commit 20cbd9dfb8553d1d13423b801d484bbdf76755e6
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Tue Oct 16 20:51:38 2012 +0800
+
+    1.some fix
+    2.problem is about updating waiting time
+
+commit 353fb7437328628212d0c63285d46e72ee0ebc23
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Tue Oct 16 20:23:29 2012 +0800
+
+    fix
+
+commit 7e5c203599e6883993b1dd88c0e832102d08dcd9
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Tue Oct 16 20:21:09 2012 +0800
+
+    1.modify README.md
+    2.I FIND BUGS OF INFO COLLECTION!! (unsolved)
+
+commit a8dc74f7e4444ce025ae46df08c3db4f89fb183d
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Tue Oct 16 19:32:04 2012 +0800
+
+    modify format and notes
+
+commit 6e260aacda3a446b2c5f95be1f6c3e4a90489f24
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Tue Oct 16 17:45:00 2012 +0800
+
+    We can show infos now!
+
+commit 997a48db0641d047e4d7d2e6802c34d38a38950d
+Author: zhengqm <zheng.qm@163.com>
+Date:   Tue Oct 16 13:58:27 2012 +0800
+
+    fix a bug when  using STL-vector
+
+commit 50b79cacc34c6afb10765ae1e79686d080828e4e
+Author: zhengqm <zheng.qm@163.com>
+Date:   Tue Oct 16 13:27:19 2012 +0800
+
+    debugging the SSTF algorithm
+
+commit 648e7c295e92f40282870bd6980ad911d1186f7e
+Author: zhengqm <zheng.qm@163.com>
+Date:   Tue Oct 16 08:30:16 2012 +0800
+
+    appending the second algorithm
+
+commit 0651b1371c8fc2b8bf7b78f876585bfcf57acfa8
+Merge: dd2e693 da74bb2
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 14 23:41:10 2012 +0800
+
+    Merge branch 'master' of http://github.com/pzi1win2go3/Elevator
+
+commit da74bb2e13b0e9cbf24f5219e9ffc3e8bad69afc
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 14 20:28:18 2012 +0800
+
+    貌似完成了第一个算法的实现 碉堡了。
+
+commit dd2e693f5f2ef8bf715e52c7334e4944e2c43185
+Merge: a1995c3 ccce4a1
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 14 15:53:48 2012 +0800
+
+    Merge branch 'master' of http://github.com/pzi1win2go3/Elevator
+
+commit a1995c32feccfa6037769a67d3d485f93f8644df
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 14 15:52:39 2012 +0800
+
+    fix a problem when merging
+
+commit ccce4a1eddd68c4ffa42829959ecabce954733c9
+Merge: 641be10 6f30354
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 14 15:48:02 2012 +0800
+
+    Merge branch 'master' of https://github.com/pzi1win2go3/Elevator
+
+commit 6f30354ddf4d3ed040db0e47d979fd58d321b188
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 14 15:46:17 2012 +0800
+
+    fix a bug (recommit)
+
+commit 641be10ba47695638e6c5687708d9ae86d4fb058
+Merge: fa0637c fa3a5e0
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 14 15:44:45 2012 +0800
+
+    Merge branch 'master' of https://github.com/pzi1win2go3/Elevator
+
+commit fa0637c4c5b2f83cd2887a30dc8f7a4fa0feb4d6
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 14 15:44:31 2012 +0800
+
+    fix for production
+
+commit fa3a5e01f6db53ab7a7de7d4e172e16ba4d8d6f6
+Merge: fa9d699 6d68d0f
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 14 15:40:50 2012 +0800
+
+    Merge branch 'master' of http://github.com/pzi1win2go3/Elevator
+
+commit fa9d6995ad185eae06d0f4b18e34d6ec08c058ac
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 14 15:38:54 2012 +0800
+
+    fix a bug
+
+commit 6d68d0ffd0eae816026c519494a6b6d04da8758b
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 14 15:23:28 2012 +0800
+
+    fix
+
+commit d42900ebad5cd662941692fb2586c8824235b09c
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 14 15:06:34 2012 +0800
+
+    update for production
+
+commit 93c6a5c9d690208b80eacd6bed62d579c4ee7b5d
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 14 13:52:40 2012 +0800
+
+    1.compacity -> capacity
+    2.fix main.cpp
+    3.no space after for, after function name, after if
+      use space carefully
+
+commit d5b8cceec5e7940aa917ccd06f6b9e0edcfbc33d
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 14 01:13:02 2012 +0800
+
+    fix some little problems
+
+commit 314243a4dee200806869431e160e76a010570db0
+Merge: 007ea1e ba220a0
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 14 00:49:02 2012 +0800
+
+    Merge branch 'master' of http://github.com/pzi1win2go3/Elevator
+
+commit 007ea1ee6a9274a84fc160159a02dbf038b34f89
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 14 00:48:20 2012 +0800
+
+    update for merge
+
+commit ba220a0612bf0f65ecbe21e884bd4fa811452736
+Merge: ee00c82 e08dcd9
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 14 00:44:26 2012 +0800
+
+    Merge branch 'master' of https://github.com/pzi1win2go3/Elevator
+
+commit ee00c826bbe125a60bc7975e832c411605af63fd
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 14 00:43:59 2012 +0800
+
+    modify main.cpp and elevator
+
+commit e08dcd9251bb7023e8e53c5a518076a93abc5ff1
+Author: zhengqm <zheng.qm@163.com>
+Date:   Sun Oct 14 00:27:56 2012 +0800
+
+    update ElevatorController
+    append the first algorithm
+
+commit 33549c65d70a321903ed87549aabfc418c72de3b
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sat Oct 13 23:17:03 2012 +0800
+
+    fix
+
+commit f37cca52fe3e36f22225a888178795c046a7c585
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sat Oct 13 23:15:31 2012 +0800
+
+    mainly update:
+    	Elevator.[h,cpp]
+
+commit b7c2474530ccea62753128d28adb36f5bf0935ef
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sat Oct 13 22:28:04 2012 +0800
+
+    主要添加 Elevator.cpp Time.cpp 内容
+
+commit 3195369cbc66fff772c0f7bfe9a2e46b002a0312
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sat Oct 13 21:25:02 2012 +0800
+
+    添加小东西
+
+commit b33b73718c93d485bffab69aea435e83caa61888
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Thu Oct 11 13:24:29 2012 +0800
+
+    fix
+
+commit 0960efad40e415617436e16694a84f3b8682bde1
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Thu Oct 11 11:58:48 2012 +0800
+
+    fix
+
+commit 4a3cbe0aab15a217c8757e395b1c026aaaad5899
+Merge: 576ab8f 78787bd
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Thu Oct 11 11:57:51 2012 +0800
+
+    Merge branch 'master' of https://github.com/pzi1win2go3/Elevator
+
+commit 576ab8f6b7c63dbc7561d9f4b8ee2690a6554012
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Thu Oct 11 11:57:07 2012 +0800
+
+    更改目录结构，详见 README
+
+commit 78787bd6de37501e635b1c8f526f8a2e38057208
+Author: 郑淇木 <zheng.qm@163.com>
+Date:   Thu Oct 11 11:43:27 2012 +0800
+
+    更新头文件
+    
+    完成初步声明
+
+commit 09b2a8148912300fb787f61080b7983b9b804ae6
+Author: 郑淇木 <zheng.qm@163.com>
+Date:   Thu Oct 11 11:41:13 2012 +0800
+
+    Revert "更新头文件"
+    
+    This reverts commit 21ea43984ec32cdc02d2e678410d301bc2ce2c33.
+
+commit 21ea43984ec32cdc02d2e678410d301bc2ce2c33
+Author: 郑淇木 <zheng.qm@163.com>
+Date:   Thu Oct 11 11:40:17 2012 +0800
+
+    更新头文件
+    
+    对Elevator ElevatorController Mission 类初步设计的声明
+
+commit 57b2be22c4e283cba26ff4d64f74c3c61fc8813e
+Author: 郑淇木 <zheng.qm@163.com>
+Date:   Thu Oct 11 11:25:16 2012 +0800
+
+    更改路径
+
+commit 2043e71add35f3cb4940543ae2d129f0e3b380e5
+Author: 郑淇木 <zheng.qm@163.com>
+Date:   Thu Oct 11 11:21:59 2012 +0800
+
+    上传代码
+    
+    泊松分布随机数产生函数
+
+commit 8d10f88540d1e00bc40e4c3059e22605dc811e2b
+Author: 崔逸卿 <cyq_2210@163.com>
+Date:   Wed Oct 10 00:37:05 2012 +0800
+
+    测试
+
+commit e8c845f5cf9edf6a85213a05f84ffc6a6296286c
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Wed Oct 10 00:33:51 2012 +0800
+
+    加入各文件
+
+commit 8151656ac9c23ac334d254c704ee549d84ed8ede
+Author: 赵天雨 <paranoidmonkeyzhao@gmail.com>
+Date:   Wed Oct 10 00:11:40 2012 +0800
+
+    update readme.md
+
+commit d7877cf137154da645c98e938313c46810bec1fc
+Author: 郑淇木 <zheng.qm@163.com>
+Date:   Wed Oct 10 00:01:08 2012 +0800
+
+    上传资料
+
+commit 310b6eea6812068d941e79c8a5e602d567de4e62
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Tue Oct 9 23:54:40 2012 +0800
+
+    更新 README 文件，添加项目说明
+
+commit cebd271661d2c6fde2e3b58a63a917844ce606dc
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 7 12:50:58 2012 +0800
+
+    please put materials in this folder
+
+commit 0e2ffcc820df748c422a6f35aa4196b61ab0c439
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 7 12:05:14 2012 +0800
+
+    add .gitignore
+
+commit 6e9c43d9f74a1d91b8b74d8171be0b13f281f1cc
+Author: pzi1win2go3 <paranoidmonkeyzhao@gmail.com>
+Date:   Sun Oct 7 12:02:32 2012 +0800
+
+    first commit

@@ -52,6 +52,8 @@ void Elevator::pick(int num)
 	if (num == 1)
 	{
 		passenger += cur_mission->getPassenger();
+		cout << "########## PICKED ###########" <<
+		cout << "### now " << globalClock.getTime() << " ############" << endl; 
 		cur_mission->picked(globalClock.getTime());
 	}
 

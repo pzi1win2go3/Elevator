@@ -69,11 +69,12 @@
 					variables: 
 						1. capacity, storey, elevatorNum, DURATION
 						2. elevator, waiting
-						3. maxWaitingTime, aveWaitingTime, aveWaitingTimeCount, aveFlow, totalFlow
-						4. globalClock
+						3. maxWaitingTime, minWaitingTime, aveWaitingTime, aveWaitingTimeCount, 
+							 maxRunTime, minRunTime, aveRunTime, aveRunTimeCount,
+							 aveFlow, totalFlow
 					functions:
 						1. show(), info()
-						2. updateMaxWaitingTime(), updateAveWaitingTime(), updateAveFlow()
+						2. updates
 
 				(4).a
 					class FCFSController < ElevatorController
@@ -87,12 +88,32 @@
 					class SSTFController < ElevatorController
 						variables:
 							1. vector<Mission *> MissionList
+							2. vector<Mission *> pickedMissionList
+						functions:
+							1. control()
+							2. storeMission()
+
+				(4).c
+					class SCANController < ElevatorController
+						variables:
+							1. vector<Mission *> MissionList
+							2. vector<Mission *> pickedMissionList
+						functions:
+							1. control()
+							2. storeMission()
+
+				(4).d
+					class LOOKController < ElevatorController
+						variables:
+							1. vector<Mission *> MissionList
+							2. vector<Mission *> pickedMissionList
 						functions:
 							1. control()
 							2. storeMission()
 				----------------------------------
 
 		9.全局变量：
+			globalClock
 
 		10.新想法：
 		

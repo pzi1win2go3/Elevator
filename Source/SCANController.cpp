@@ -115,6 +115,9 @@ void SCANController::control()
 		for(infoIter = MissionList.begin(); infoIter != MissionList.end(); infoIter++)
 		{
 			updateWaitingTime(*infoIter);
+		}
+		for(infoIter = takenMissionList.begin(); infoIter != takenMissionList.end(); infoIter++)
+		{
 			updateRunTime(*infoIter);
 		}
 		updateAveFlow();

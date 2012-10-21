@@ -91,9 +91,12 @@ void ElevatorController::updateWaitingTime(Mission * ptrMission)
 
 void ElevatorController::updateRunTime(Mission * ptrMission)
 {
-	ElevatorController::updateMaxRunTime(ptrMission);
-	ElevatorController::updateAveRunTime(ptrMission);
-	ElevatorController::updateMinRunTime(ptrMission);
+	if(ptrMission->getPickedTime() != -1)	// ensure: updated only when this ptrMission is already picked
+	{
+		ElevatorController::updateMaxRunTime(ptrMission);
+		ElevatorController::updateAveRunTime(ptrMission);
+		ElevatorController::updateMinRunTime(ptrMission);
+	}
 }
 
 void ElevatorController::updateMaxWaitingTime(Mission * ptrMission)

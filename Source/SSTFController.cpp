@@ -47,6 +47,8 @@ void SSTFController::control()
 
 			ptrMission = *SSTiter;
 			MissionList.erase(SSTiter);
+			takenMissionList.push_back(ptrMission);
+
 			if(ptrMission->getPassenger() <= capacity)
 			{
 				elevator[i].takeMission(ptrMission );
@@ -119,6 +121,9 @@ void SSTFController::control()
 		for(infoIter = MissionList.begin(); infoIter != MissionList.end(); infoIter++)
 		{
 			updateWaitingTime(*infoIter);
+		}
+		for(infoIter = takenMissionList.begin(); infoIter != takenMissionList.end(); infoIter++)
+		{
 			updateRunTime(*infoIter);
 		}
 		updateAveFlow();

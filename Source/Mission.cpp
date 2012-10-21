@@ -9,7 +9,7 @@ Mission::Mission(int initFrom, int initTo, int initPassenger, int initBornTime)
 	to = initTo;
 	passenger = initPassenger;
 	bornTime = initBornTime;
-	pickedTime = 0;
+	pickedTime = -1;
 }
 
 void Mission::picked(int initPickedTime)
@@ -53,6 +53,10 @@ int Mission::getRunTime(int completedTime)
 int Mission::getBornTime()
 {
 	return bornTime;
+}
+int Mission::getPickedTime()
+{
+	return pickedTime;
 }
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////

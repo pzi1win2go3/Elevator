@@ -80,6 +80,7 @@ public:
 
 private:
 	vector<Mission *> MissionList;
+	vector<Mission *> takenMissionList;
 };
 
 class SCANController:public ElevatorController
@@ -90,7 +91,7 @@ public:
 	void storeMission(Mission*);
 private:
 	vector<Mission *> MissionList;
-
+	vector<Mission *> takenMissionList;
 };
 
 class LOOKController:public ElevatorController
@@ -101,4 +102,5 @@ public:
 	void storeMission(Mission*);
 private:
 	vector<Mission *> MissionList;
+	vector<Mission *> takenMissionList;
 };

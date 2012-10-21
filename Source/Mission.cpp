@@ -49,7 +49,7 @@ int Mission::getRunTime(int completedTime)
 		cin.get();}
 #endif
 	return completedTime - pickedTime;
-} 
+}
 int Mission::getBornTime()
 {
 	return bornTime;

@@ -4,6 +4,7 @@
 #include <queue>
 #include <iostream>
 #include <cmath>
+#include <algorithm>
 
 extern Time globalClock;
 

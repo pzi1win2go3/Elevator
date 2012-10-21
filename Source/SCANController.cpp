@@ -81,10 +81,12 @@ void SCANController::control()
 			        Mission* toTake = new Mission(ptrMission->getFrom(),ptrMission->getTo(),max,ptrMission->getBornTime());
 			        Mission* left = new Mission(ptrMission->getFrom(),ptrMission->getTo(),ptrMission->getPassenger()-max,ptrMission->getBornTime());
 			        elevator[i].takeMission(toTake);
- 							elevator[i].pick(elevator[i].getMissionNum());
-              waiting[ptrMission ->getFrom()] -= toTake ->getPassenger();
-             	iter = MissionList.erase(iter);
-              MissionList.push_back(left);
+                    elevator[i].pick(elevator[i].getMissionNum());
+                    waiting[ptrMission ->getFrom()] -= toTake ->getPassenger();
+                    MissionList.push_back(left);
+                    iter = find(MissionList.begin(),MissionList.end(),ptrMission);
+                    iter = MissionList.erase(iter);
+
 		  	  }
 				}
 				else

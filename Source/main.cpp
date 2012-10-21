@@ -24,16 +24,16 @@ Time globalClock;
 
 void input()
 {
-	printf("请输入最大乘客数:\n");
+	printf("Please input capacity:\n");
 	scanf("%d", &capacity);
 
-	printf("请输入电梯数:\n");
+	printf("Please input number of elevators:\n");
 	scanf("%d", &elevatorNum);
 
-	printf("请输入楼层数:\n");
+	printf("Please input number of storeys:\n");
 	scanf("%d", &storey);
 
-	printf("请输入泊松分布参数:\n");
+	printf("Please input Lambda:\n");
 	scanf("%lf", &lambda);
 }
 
@@ -47,17 +47,17 @@ int main(int argc, char *argv[])
 		int decision;
 		bool over = false;
 
-		printf("----请输入您要使用的算法的编号(1, 2, 3, 4):\n");
-		printf("	0.退出\n");
-		printf("	1.FCFS 先到先服务\n");
-		printf("	2.SSTF 最短搜索时间\n");
+		printf("----Please input the number of algorithm to use(1, 2, 3, 4):\n");
+		printf("	0.exit\n");
+		printf("	1.FCFS first come first serve\n");
+		printf("	2.SSTF shortest seek time first\n");
 		printf("	3.SCAN\n");
 		printf("	4.LOOK\n");
 		cin >> decision;
 
 		if(decision == 0)
 		{
-			printf("电梯模拟器演示完毕，感谢您的使用，下次再见！\n");
+			printf("Thank you for using, see you next time.\n");
 			break;
 		}
 		else if(decision == 1)
@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 		}
 		else
 		{
-			printf("您没有输入正确的选项。\n");
+			printf("Sorry, wrong input.\n");
 			continue;
 		}
 

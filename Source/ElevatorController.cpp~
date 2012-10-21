@@ -68,14 +68,14 @@ void ElevatorController::info()
 {
 	printf("--Information----------------------------------\n");
 	printf("	Time now:					%6ds\n", globalClock.getTime());
-	printf("	Number of elevator:        			%6d\n", elevatorNum);
+	printf("	Number of elevator:			%6d\n", elevatorNum);
 	printf("	Max waiting time:				%6ds\n", maxWaitingTime);
 	printf("	Min waiting time:				%6ds\n", minWaitingTime);
 	printf("	Ave waiting time:				%6.2fs\n", aveWaitingTime);
-	printf("	Max run time:					%6ds\n", maxRunTime);
-	printf("	Min run time:					%6ds\n", minRunTime);
-	printf("	Ave run time:  					%6.2fs\n", aveRunTime);
-	printf("	Total flow number:				%6.0f pass\n", totalFlow);
+	printf("	Max run time:				%6ds\n", maxRunTime);
+	printf("	Min run time:				%6ds\n", minRunTime);
+	printf("	Ave run time:  				%6.2fs\n", aveRunTime);
+	printf("	Total flow number:			%6.0f pass\n", totalFlow);
 	printf("	Ave flow number:				%6.2f pass/s\n", aveFlow);
 	printf("-----------------------------------------------\n");
 }
@@ -110,8 +110,7 @@ void ElevatorController::updateMinWaitingTime(Mission * ptrMission)
 
 void ElevatorController::updateAveWaitingTime(Mission * ptrMission)
 {
-	aveWaitingTime = (ptrMission->getWaitingTime(globalClock.getTime()) + aveWaitingTime * (double)aveWaitingTimeCount) / ((double)aveWaitingTimeCount + 1);
-	aveWaitingTimeCount++;
+	aveWaitingTime = (ptrMission->getWaitingTime(globalClock.getTime()) + aveWaitingTime * (double)aveWaitingTimeCount++) / (double)aveWaitingTimeCount;
 }
 
 void ElevatorController::updateMaxRunTime(Mission * ptrMission)
@@ -128,8 +127,7 @@ void ElevatorController::updateMinRunTime(Mission * ptrMission)
 
 void ElevatorController::updateAveRunTime(Mission * ptrMission)
 {
-	aveRunTime = (ptrMission->getRunTime(globalClock.getTime()) + aveRunTime * (double)aveRunTimeCount) / ((double)aveRunTimeCount + 1);
-	aveRunTimeCount++;
+	aveRunTime = (ptrMission->getRunTime(globalClock.getTime()) + aveRunTime * (double)aveRunTimeCount++) / (double)aveRunTimeCount;
 }
 
 //////////////////////////////////////////////////////////////////

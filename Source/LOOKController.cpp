@@ -89,23 +89,24 @@ void LOOKController::control()
 					  {
 				    	if (ptrMission->getPassenger()+elevator[i].getPassenger() <= capacity)     // same direction
 				    	{
-				        elevator[i].takeMission(ptrMission );
+                            elevator[i].takeMission(ptrMission );
 						  	elevator[i].pick(elevator[i].getMissionNum());
-		         	  waiting[ptrMission ->getFrom()] -= ptrMission ->getPassenger();
-								iter = MissionList.erase(iter);
-				  	  }
+                            waiting[ptrMission ->getFrom()] -= ptrMission ->getPassenger();
+                            iter = MissionList.erase(iter);
+                        }
 				   	 	else
-				  	  {
+                        {
 					        int max = capacity-elevator[i].getPassenger();
-					        Mission* toTake = new Mission(ptrMission->getFrom(),ptrMission->getTo(),max,ptrMission->getBornTime());
-					        Mission* left = new Mission(ptrMission->getFrom(),ptrMission->getTo(),ptrMission->getPassenger()-max,ptrMission->getBornTime());
-					        elevator[i].takeMission(toTake);
-		 							elevator[i].pick(elevator[i].getMissionNum());
-		              waiting[ptrMission ->getFrom()] -= toTake ->getPassenger();
-		             	iter = MissionList.erase(iter);
-		              MissionList.push_back(left);
-				  	  }
-						}
+                            Mission* toTake = new Mission(ptrMission->getFrom(),ptrMission->getTo(),max,ptrMission->getBornTime());
+                            Mission* left = new Mission(ptrMission->getFrom(),ptrMission->getTo(),ptrMission->getPassenger()-max,ptrMission->getBornTime());
+                            elevator[i].takeMission(toTake);
+                            elevator[i].pick(elevator[i].getMissionNum());
+                            waiting[ptrMission ->getFrom()] -= toTake ->getPassenger();
+                            MissionList.push_back(left);
+                            iter = find(MissionList.begin(),MissionList.end(),ptrMission);
+                            iter = MissionList.erase(iter);
+                        }
+                    }
 						else
 						{
 						  ++iter;

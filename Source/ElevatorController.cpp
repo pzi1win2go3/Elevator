@@ -110,7 +110,7 @@ void ElevatorController::updateMinWaitingTime(Mission * ptrMission)
 
 void ElevatorController::updateAveWaitingTime(Mission * ptrMission)
 {
-	aveWaitingTime = (ptrMission->getWaitingTime(globalClock.getTime()) + aveWaitingTime * (double)aveWaitingTimeCount) / ((double)aveWaitingTimeCount+1);
+	aveWaitingTime = (ptrMission->getWaitingTime(globalClock.getTime()) + aveWaitingTime * (double)aveWaitingTimeCount) / ((double)aveWaitingTimeCount + 1);
 	aveWaitingTimeCount++;
 }
 
@@ -128,7 +128,7 @@ void ElevatorController::updateMinRunTime(Mission * ptrMission)
 
 void ElevatorController::updateAveRunTime(Mission * ptrMission)
 {
-	aveRunTime = (ptrMission->getRunTime(globalClock.getTime()) + aveRunTime * (double)aveRunTimeCount) /((double)aveRunTimeCount+1);
+	aveRunTime = (ptrMission->getRunTime(globalClock.getTime()) + aveRunTime * (double)aveRunTimeCount) / ((double)aveRunTimeCount + 1);
 	aveRunTimeCount++;
 }
 

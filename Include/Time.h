@@ -4,9 +4,9 @@
 class Time
 {
 public:
-	Time();	// construction	
+	Time();                     // construction	
 
-	void tick();
+	void tick();                
 	void reset();
 
 	//////////////////////////////////////////////////////////////////

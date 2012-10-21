@@ -42,6 +42,8 @@ int main(int argc, char *argv[])
 	while(true)
 	{
 		ElevatorController * controller;
+
+		// choose which algorithm to use
 		int decision;
 		bool over = false;
 
@@ -84,22 +86,28 @@ int main(int argc, char *argv[])
 			continue;
 		}
 
+		// randomize
 		srand(time(0));
 
+		// reset time
 		globalClock.reset();
 
+		// process
 		while(true)
 		{			
-			// 1. generate missions here
-			int missionNum = 1;	// missions generated per DURATION
+			// 1. generate missions
+			int missionNum = 1;	// num of missions generated per DURATION
+
 			while(missionNum--)
 			{
 				Mission *newMission = new Mission(rand() % storey + 1, rand() % storey + 1, P_Rand(lambda), globalClock.getTime());
 				controller->storeMission(newMission);
 			}
+
 			// 2. control
 			controller->control();
 
+			// 3. display for 100s only, then choose again
 			if(globalClock.getTime() >= 100)
 			{
 				delete controller;

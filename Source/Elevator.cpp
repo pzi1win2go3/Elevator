@@ -35,41 +35,47 @@ void Elevator::takeMission(Mission * mission)
 void Elevator::move(int order)
 {
 	destination = order;
+
+	// go down
 	if(position > destination)
 	{
 		position--;
 	}
+
+	// go up
 	if(position < destination)
 	{
 		position++;
 	}
-	// take 1 unit time
 }
 
 void Elevator::pick(int num)
 {
-	//missionNum++;  why here?
+	// pick the first mission
 	if (num == 1)
 	{
 		passenger += cur_mission->getPassenger();
 		cur_mission->picked(globalClock.getTime());
 	}
 
+	// pick the second mission, if exists
 	else if (num == 2)
 	{
 		passenger += sec_mission->getPassenger();
 		sec_mission->picked(globalClock.getTime());
 	}
+
+	// pick the third mission, if exists
 	else
 	{
 		passenger += thd_mission->getPassenger();
 		thd_mission->picked(globalClock.getTime());
 	}
-	// take 1 unit time
 }
 
 void Elevator::drop(int num)
 {
+	// drop the first mission
 	if (num == 1)
 	{
 		passenger -= cur_mission->getPassenger();
@@ -78,6 +84,8 @@ void Elevator::drop(int num)
 		sec_mission = thd_mission;
 		thd_mission = NULL;
 	}
+
+	// drop the second mission, if exists
 	else if (num == 2)
 	{
 		passenger -= sec_mission->getPassenger();
@@ -85,6 +93,8 @@ void Elevator::drop(int num)
 		sec_mission = thd_mission;
 		thd_mission = NULL;
 	}
+
+	// drop the third mission, if exists
 	else
 	{
 		passenger -= thd_mission->getPassenger();
@@ -92,9 +102,7 @@ void Elevator::drop(int num)
 		thd_mission = NULL;
 	}
 	missionNum--;
-	// take 1 unit time
 }
-
 
 void Elevator::setStatus(int newStatus)
 {
@@ -106,19 +114,6 @@ void Elevator::setPosition(int newPosition)
 {
 	position = newPosition;
 }
-
-void Elevator::setMissionNull(int num)
-{
-	if (num == 1)
-		cur_mission = NULL;
-	else if (num == 2)
-		sec_mission = NULL;
-	else
-		thd_mission = NULL;
-	return;
-}
-
-
 
 //////////////////////////////////////////////////////////////////
 /////////////////////////// API here /////////////////////////////
@@ -155,9 +150,6 @@ Mission* Elevator::getMission(int num)
 	else
 		return thd_mission;
 }
-
-
-
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 

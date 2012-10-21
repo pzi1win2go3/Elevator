@@ -20,13 +20,14 @@ public:
 	/////////////////////
 	/////////////////////
 
-	void updateWaitingTime(Mission *);    // to call 3 functions below, called when a mission is waiting every 1 unit time
+	void updateWaitingTime(Mission *);    // to call 3 functions below, called when a mission is waiting
 	void updateMaxWaitingTime(Mission *);
 	void updateMinWaitingTime(Mission *);
 	void updateAveWaitingTime(Mission *);
-	void updateRunTime(Mission *);
-	void updateMaxRunTime(Mission *);
-	void updateMinRunTime(Mission *);
+
+	void updateRunTime(Mission *);			  // to call 3 functions below, called when a mission is completed
+	void updateMaxRunTime(Mission *);			// actually it can be called whenever a mission is in elevator
+	void updateMinRunTime(Mission *);			
 	void updateAveRunTime(Mission *);
 
 	void updateAveFlow();	 								// called when every 1 unit time
@@ -38,9 +39,11 @@ protected:
 	int capacity;
 	int storey;
 	int elevatorNum;
+
 	int DURATION;	  				// duration of generating missions
 
 	Elevator * elevator;		// (pointer) elevators
+
 	int * waiting;					// (pointer) numbers of waiting people of different storeys
 
 	/////////////////////////
@@ -59,7 +62,7 @@ protected:
 	/////////////////////////
 };
 
-class FCFSController:public ElevatorController // First Come First Served
+class FCFSController:public ElevatorController // Algorithm 1 : First Come First Served
 {
 public:
 	 FCFSController (int init_capacity, int init_storey, int init_elevatorNum)
@@ -70,7 +73,7 @@ private:
 	queue <Mission *> MissionQ;
 };
 
-class SSTFController:public ElevatorController // Shortest Seek Time First
+class SSTFController:public ElevatorController // Algorithm 2 : Shortest Seek Time First
 {
 public:
 	SSTFController  (int init_capacity, int init_storey, int init_elevatorNum)
@@ -80,10 +83,10 @@ public:
 
 private:
 	vector<Mission *> MissionList;
-	vector<Mission *> takenMissionList;
+	vector<Mission *> pickedMissionList;
 };
 
-class SCANController:public ElevatorController
+class SCANController:public ElevatorController	// Algorithm 3 : Scan
 {
 public:
 	SCANController  (int init_capacity, int init_storey, int init_elevatorNum);
@@ -91,10 +94,10 @@ public:
 	void storeMission(Mission*);
 private:
 	vector<Mission *> MissionList;
-	vector<Mission *> takenMissionList;
+	vector<Mission *> pickedMissionList;
 };
 
-class LOOKController:public ElevatorController
+class LOOKController:public ElevatorController	// Algorithm 4 : Look
 {
 public:
 	LOOKController  (int init_capacity, int init_storey, int init_elevatorNum);
@@ -102,5 +105,5 @@ public:
 	void storeMission(Mission*);
 private:
 	vector<Mission *> MissionList;
-	vector<Mission *> takenMissionList;
+	vector<Mission *> pickedMissionList;
 };

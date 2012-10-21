@@ -20,17 +20,24 @@ void FCFSController::control()
 		{
 			for(i = 1; i <= elevatorNum; i++)
 			{
+
+				// break if no mission
 				if (MissionQ.empty())
 					break;
+
+				// assign if elevator is free
 				if(elevator[i].getStatus() == 0)
 				{
 					ptrMission = MissionQ.front();
 					MissionQ.pop();
+
+					// when elevator is large enough
 					if(ptrMission->getPassenger() <= capacity)
 					{
 						elevator[i].takeMission(ptrMission);
 						elevator[i].setStatus(-1);
 					}
+					// when elevator can not hold all the people
 					else
 					{
 						Mission * temp = new Mission (ptrMission->getFrom(), ptrMission->getTo(), ptrMission->getPassenger() - capacity, ptrMission->getBornTime());
@@ -65,17 +72,7 @@ void FCFSController::control()
 					// update info
 					updateRunTime(elevator[i].getMission());
 
-					elevator[i].drop();
-
-					// mission completed
-					// function moved to class Elevator-drop()
-					/*
-					if(elevator[i].getMission() != NULL)
-					{
-					    delete elevator[i].getMission();
-					    elevator[i].setMissionNull();
-					}
-					*/
+					elevator[i].drop();				
 				}
 				else
 				{
@@ -110,11 +107,12 @@ void FCFSController::control()
 
 void FCFSController::storeMission(Mission * ptrMission)
 {
-    if (ptrMission->getFrom() == ptrMission->getTo() || ptrMission->getPassenger() <= 0)
-    {
-        delete ptrMission;
-        return;
-    }
+	// make sure mission is reasonable
+  if (ptrMission->getFrom() == ptrMission->getTo() || ptrMission->getPassenger() <= 0)
+  {
+      delete ptrMission;
+      return;
+  }
 	waiting[ptrMission->getFrom()] += ptrMission->getPassenger();
 	MissionQ.push(ptrMission);
 }

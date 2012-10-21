@@ -27,7 +27,7 @@ void SSTFController::control()
 			if(MissionList.empty())
 				break;
 
-			// find the shortest seek	time
+			// find the shortest seek	time mission
 			else
 			{
 				SSTime = abs(MissionList[0]->getFrom() - elevator[i].getPosition());
@@ -44,16 +44,17 @@ void SSTFController::control()
 					}
 				}
 			}
-
 			ptrMission = *SSTiter;
 			MissionList.erase(SSTiter);
-			takenMissionList.push_back(ptrMission);
+			pickedMissionList.push_back(ptrMission);
 
+			// if elevator is big enough
 			if(ptrMission->getPassenger() <= capacity)
 			{
 				elevator[i].takeMission(ptrMission );
 				elevator[i].setStatus(-1);
 			}
+			// else elevator can not hold all the people
 			else
 			{
 				Mission * temp = new Mission (ptrMission->getFrom(), ptrMission->getTo(), ptrMission->getPassenger() - capacity, ptrMission->getBornTime());
@@ -77,25 +78,22 @@ void SSTFController::control()
 			{
 				ptrMission = elevator[i].getMission();
 
-				//reach
+				// complete mission if reach
 				if(elevator[i].getPosition() == ptrMission->getTo())
 				{
 					elevator[i].setStatus(0);
+
+					// update info
+					updateMinRunTime(ptrMission);
+					updateAveRunTime(ptrMission);
+
 					vector<Mission * > :: iterator iter;
-					iter = find(takenMissionList.begin(),takenMissionList.end(),ptrMission);
-					takenMissionList.erase(iter);
+					iter = find(pickedMissionList.begin(),pickedMissionList.end(),ptrMission);
+					pickedMissionList.erase(iter);
+
 					elevator[i].drop();
-
-
-					// mission completed - function moved to class elevator-drop()
-					/*
-					if (elevator[i].getMission() != NULL)
-					{
-					    delete elevator[i].getMission();
-					    elevator[i].setMissionNull();
-					}
-					*/
 				}
+				// else go on moving
 				else
 				{
 					elevator[i].move(ptrMission->getTo());
@@ -107,14 +105,15 @@ void SSTFController::control()
 			{
 				ptrMission = elevator[i].getMission();
 
-				//reach
+				// take mission if reach
 				if(elevator[i].getPosition() == ptrMission->getFrom())
 				{
 					elevator[i].setStatus(1);
 					waiting[ptrMission->getFrom()] -= ptrMission->getPassenger();
 					elevator[i].pick();
-					takenMissionList.push_back(ptrMission);
+					pickedMissionList.push_back(ptrMission);
 				}
+				// else go on moving
 				else
 				{
 					elevator[i].move(ptrMission->getFrom());
@@ -127,9 +126,9 @@ void SSTFController::control()
 		{
 			updateWaitingTime(*infoIter);
 		}
-		for(infoIter = takenMissionList.begin(); infoIter != takenMissionList.end(); infoIter++)
+		for(infoIter = pickedMissionList.begin(); infoIter != pickedMissionList.end(); infoIter++)
 		{
-			updateRunTime(*infoIter);
+			updateMaxRunTime(*infoIter);
 		}
 		updateAveFlow();
 	}

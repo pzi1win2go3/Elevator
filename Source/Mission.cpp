@@ -9,7 +9,6 @@ Mission::Mission(int initFrom, int initTo, int initPassenger, int initBornTime)
 	to = initTo;
 	passenger = initPassenger;
 	bornTime = initBornTime;
-	pickedTime = -1;
 }
 
 void Mission::picked(int initPickedTime)
@@ -32,22 +31,10 @@ int Mission::getPassenger()
 }
 int Mission::getWaitingTime(int pickedTime)
 {
-#ifdef DEBUG
-	if (pickedTime > globalClock.getTime())
-	{
-		cout << "error!";
-		cin.get();
-	}
-#endif
 	return pickedTime - bornTime;
 }
 int Mission::getRunTime(int completedTime)
 {
-#ifdef DEBUG
-	if (completedTime-pickedTime < 0)
-	{cout << "error!";
-		cin.get();}
-#endif
 	return completedTime - pickedTime;
 }
 int Mission::getBornTime()

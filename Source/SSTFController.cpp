@@ -81,7 +81,11 @@ void SSTFController::control()
 				if(elevator[i].getPosition() == ptrMission->getTo())
 				{
 					elevator[i].setStatus(0);
+					vector<Mission * > :: iterator iter;
+					iter = find(takenMissionList.begin(),takenMissionList.end(),ptrMission);
+					takenMissionList.erase(iter);
 					elevator[i].drop();
+
 
 					// mission completed - function moved to class elevator-drop()
 					/*
@@ -109,6 +113,7 @@ void SSTFController::control()
 					elevator[i].setStatus(1);
 					waiting[ptrMission->getFrom()] -= ptrMission->getPassenger();
 					elevator[i].pick();
+					takenMissionList.push_back(ptrMission);
 				}
 				else
 				{

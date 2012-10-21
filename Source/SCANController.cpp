@@ -43,20 +43,29 @@ void SCANController::control()
 
 		for (i = 1; i <= elevatorNum; i++)
 		{
+			std::vector<Mission *> :: iterator iter;
 			if (elevator[i].getMissionNum() >= 1 && elevator[i].getMission(1)->getTo() == elevator[i].getPosition())
 			{
 			  stop[i] = true;
-				elevator[i].drop(1);
-			}
+			  iter = find(takenMissionList.begin(),takenMissionList.end(),elevator[i].getMission(1));
+			 takenMissionList.erase(iter);
+			 elevator[i].drop(1);
+			 			}
 			if (elevator[i].getMissionNum() >= 2 && elevator[i].getMission(2)->getTo() == elevator[i].getPosition())
 			{
 				stop[i] = true;
+				iter = find(takenMissionList.begin(),takenMissionList.end(),elevator[i].getMission(2));
+			 	takenMissionList.erase(iter);
 				elevator[i].drop(2);
+
 			}
 			if (elevator[i].getMissionNum() >= 3 && elevator[i].getMission(3)->getTo() == elevator[i].getPosition())
 			{
-			  stop[i] = true;
+			  	stop[i] = true;
+			  	iter = find(takenMissionList.begin(),takenMissionList.end(),elevator[i].getMission(3));
+			 	takenMissionList.erase(iter);
 				elevator[i].drop(3);
+
 			}
 		}
 
@@ -70,10 +79,11 @@ void SCANController::control()
 			  {
 		    	if (ptrMission->getPassenger()+elevator[i].getPassenger() <= capacity)     // same direction
 		    	{
-		        elevator[i].takeMission(ptrMission );
+		        		elevator[i].takeMission(ptrMission );
 				  	elevator[i].pick(elevator[i].getMissionNum());
-         	  waiting[ptrMission ->getFrom()] -= ptrMission ->getPassenger();
-						iter = MissionList.erase(iter);
+				  	takenMissionList.push_back(ptrMission);
+         	 			 waiting[ptrMission ->getFrom()] -= ptrMission ->getPassenger();
+					iter = MissionList.erase(iter);
 		  	  }
 		   	 	else
 		  	  {
@@ -81,11 +91,12 @@ void SCANController::control()
 			        Mission* toTake = new Mission(ptrMission->getFrom(),ptrMission->getTo(),max,ptrMission->getBornTime());
 			        Mission* left = new Mission(ptrMission->getFrom(),ptrMission->getTo(),ptrMission->getPassenger()-max,ptrMission->getBornTime());
 			        elevator[i].takeMission(toTake);
-                    elevator[i].pick(elevator[i].getMissionNum());
-                    waiting[ptrMission ->getFrom()] -= toTake ->getPassenger();
-                    MissionList.push_back(left);
-                    iter = find(MissionList.begin(),MissionList.end(),ptrMission);
-                    iter = MissionList.erase(iter);
+                    		elevator[i].pick(elevator[i].getMissionNum());
+                  		 waiting[ptrMission ->getFrom()] -= toTake ->getPassenger();
+                    		MissionList.push_back(left);
+                    		takenMissionList.push_back(toTake);
+                    		iter = find(MissionList.begin(),MissionList.end(),ptrMission);
+                    		iter = MissionList.erase(iter);
 
 		  	  }
 				}

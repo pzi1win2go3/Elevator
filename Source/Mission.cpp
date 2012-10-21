@@ -9,7 +9,7 @@ Mission::Mission(int initFrom, int initTo, int initPassenger, int initBornTime)
 	to = initTo;
 	passenger = initPassenger;
 	bornTime = initBornTime;
-	pickedTime = 0;
+	pickedTime = -1;
 }
 
 void Mission::picked(int initPickedTime)
